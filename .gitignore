@@ -1,5 +1,5 @@
 # Editor files
-.idea
+.idea/
 .vscode
 .vs
 
@@ -8,10 +8,10 @@
 .DS_Store
 
 # Build folder
-build
+build/
 
 # External modules
-node_modules
+node_modules/
 
 # Database files
-database
+database/
