@@ -4,8 +4,8 @@
   "description": "gamification of classical poll concept",
   "main": "server.js",
   "scripts": {
-    "build": "babel --watch ./src --out-dir build",
-    "start": "nodemon build/server.js --watch build"
+    "build": "babel --watch src --out-dir build",
+    "start": "nodemon build/server.js --watch build/"
   },
   "keywords": [
     "Node.js",

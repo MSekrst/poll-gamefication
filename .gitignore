@@ -1,7 +1,6 @@
 # Editor files
 .idea/
 .vscode
-.vs
 
 # Mac files
 *~
@@ -14,7 +13,10 @@ build/
 node_modules/
 
 # Database files
-database/
+database
 
 # log files
 *.log*
+
+# sensitive data
+src/config/sensitive.js
