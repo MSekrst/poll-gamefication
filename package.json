@@ -1,0 +1,27 @@
+{
+  "name": "ppa-game",
+  "version": "1.0.0",
+  "description": "gamification of classical poll concept",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Node.js",
+    "HTML",
+    "CSS",
+    "jQuery",
+    "Gamification",
+    "Polls"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1"
+  }
+}

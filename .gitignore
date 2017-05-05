@@ -1,0 +1,17 @@
+# Editor files
+.idea
+.vscode
+.vs
+
+# Mac files
+*~
+.DS_Store
+
+# Build folder
+build
+
+# External modules
+node_modules
+
+# Database files
+database
