@@ -92,9 +92,10 @@ var myGameArea = {
 
 function updateGameArea() {
   if (myGamePiece.crashWith(myObstacle)) {
-    alert("dizi modal");
+    newPool(); //radi novu anketu
+    $("#anketa").modal('show');
     myGameArea.clear();
-    myObstacle.update();
+    myObstacle = null;
     myGamePiece.x += myGamePiece.speedX;
     myGamePiece.y += myGamePiece.speedY;
     myGamePiece.update();

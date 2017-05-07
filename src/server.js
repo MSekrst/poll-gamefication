@@ -6,7 +6,6 @@ import router from './routes/index.js';
 import {connectDatabase} from './mongo/index.js';
 
 const app = express();
-
 connectDatabase();
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -21,3 +20,4 @@ app.use(router);
 app.listen(port, () => {
   console.log(`Server is running at ${host}:${port}`);
 });
+
