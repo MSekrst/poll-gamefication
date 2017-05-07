@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
   res.sendFile(resolve('public/html/home.html'));
 });
 
-router.get('/startGame', (req, res) => {
+router.get('/game', (req, res) => {
   res.sendFile(resolve('public/html/game.html'));
 })
 

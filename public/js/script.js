@@ -92,7 +92,8 @@ var myGameArea = {
 
 function updateGameArea() {
   if (myGamePiece.crashWith(myObstacle)) {
-    alert("dizi modal");
+    newPool(); //radi novu anketu
+
     myGameArea.clear();
     myObstacle.update();
     myGamePiece.x += myGamePiece.speedX;
