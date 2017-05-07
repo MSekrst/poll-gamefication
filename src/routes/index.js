@@ -20,11 +20,12 @@ router.get('/startGame', (req, res) => {
 
 router.post('/save', (reg, res) => {
   const db = getDb();
-
+  console.log(req.body);
   db.collection('poll').insertOne(req.body, (err) => {
     if (err) {
       return res.status(500).json(err);
     }
   })
-})
+});
+
 export default router;
