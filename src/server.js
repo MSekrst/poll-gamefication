@@ -3,8 +3,10 @@ import bodyParser from 'body-parser';
 
 import { port, host } from './config/settings.js';
 import router from './routes/index.js';
+import {connectDatabase} from './mongo/index.js';
 
 const app = express();
+connectDatabase();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -18,3 +20,4 @@ app.use(router);
 app.listen(port, () => {
   console.log(`Server is running at ${host}:${port}`);
 });
+

@@ -14,14 +14,15 @@ router.get('/game', (req, res) => {
   res.sendFile(resolve('public/html/game.html'));
 });
 
-router.post('/save', (reg, res) => {
+router.post('/save', (req, res) => {
   const db = getDb();
-
   db.collection('poll').insertOne(req.body, (err) => {
     if (err) {
       return res.status(500).json(err);
     }
   })
+
+  res.redirect('/game');
 });
 
 export default router;

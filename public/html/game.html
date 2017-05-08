@@ -1,18 +1,154 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: 100%; width: 100%; margin: 0">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width" />
-  <title>Game</title>
-  <link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
-</head>
-<body>
-<div class="full-cover"></div>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    canvas {
+      border: 1px solid #d3d3d3;
+      background-color: #f1f1f1;
+    }
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="/css/home.css">
+    span {
+      font-weight: bold;
+    }
+  </style>
+  <title>Title</title>
+  <script src="../js/script.js"></script>
+  <script src="../js/poll.js"></script>
+  <script type="text/javascript"
+          src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body style="height: 100%; width: 100%; margin: 0" onload="startGame();">
+<div style="text-align:center;width:480px;">
+  <button onmousedown="moveup();" onmouseup="clearmove();" ontouchstart="moveup()">UP</button>
+  <br><br>
+  <button onmousedown="moveleft();" onmouseup="clearmove();" ontouchstart="moveleft()">LEFT</button>
+  <button onmousedown="moveright();" onmouseup="clearmove();" ontouchstart="moveright()">RIGHT
+  </button>
+  <br><br>
+  <button onmousedown="movedown();" onmouseup="clearmove();" ontouchstart="movedown()">DOWN</button>
+</div>
+
+<div id="anketa" class="modal fade" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Anketa</h5>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="poll">
+          <div class="form-group">
+            Došli ste u <span id="daytime">7:00</span> na parkiralište.
+            <br>
+            Na parkiralištu planirate ostati <strong>1 puni sat</strong>.
+            <br>
+            Trenutačno stanje Vaše baterije je <span id="soc1">76</span><strong>%</strong>.
+            <br>
+            Pri odlasku s parkirališta status baterije bio bi Vam <span
+            id="soc2">76</span><strong>%</strong>.
+            <br>
+            U slučaju punjnja kod kuće trošak bi bio : <span id="cost">76</span><strong> novčanih
+            jedinica</strong>
+            <br>
+            <br>
+            Koliko ste spremni platiti za uslugu punjenja EV?
+          </div>
+          <br>
+          <input id="slider" type="text" data-slider-ticks="[0, 75, 150, 225, 300]"
+                 data-slider-value="0"
+                 data-slider-ticks-snap-bounds="30"
+                 data-slider-ticks-labels='["0", "75", "150", "225", "300"]'
+                 ticks_positions="[0, 25, 50, 75, 100]" tooltip="'show'" tooltip_position="'top'"/>
+          <hr>
+          <div class="text-right">
+            <button type="submit" class="btn btn-primary">Pohrani</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+      integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+      crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+        integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/css/bootstrap-slider.min.css"
+      crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/bootstrap-slider.min.js"
+        crossorigin="anonymous"></script>
+
+
+<script>
+  var slider = $('#slider').slider({
+    ticks: [0, 75, 150, 225, 300],
+    ticks_positions: [0, 25, 50, 75, 100],
+    ticks_labels: ['0', '75', '150', '225', '300'],
+    ticks_snap_bounds: 30,
+    tooltip: 'show',
+    tooltip_position: 'top',
+    value: 0
+  });
+
+  $('document').ready(function () {
+    $('.slider').attr('style', 'margin-bottom:28px; width:80%; margin-left:10%');
+    $('.tooltip').attr('style', 'opacity:1');
+  });
+
+  $('#poll').submit(function (e) {
+    var wtp = slider.slider('getValue');
+    var time = (new Date().getMilliseconds() - startTime) / 1000;
+
+    var poll = {
+      'daytime': daytime,
+      'soc1': soc1,
+      'soc2': soc2,
+      'cost': cost,
+      'wtp': wtp,
+      'time': time
+    };
+
+    post('./save', poll);
+
+    e.preventDefault();
+  });
+
+  function post(path, params, method) {
+    method = method || 'post'; // Set method to post by default if not specified.
+
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement('form');
+    form.setAttribute('method', method);
+    form.setAttribute('action', path);
+
+    for (var key in params) {
+      if (params.hasOwnProperty(key)) {
+        var hiddenField = document.createElement('input');
+        hiddenField.setAttribute('type', 'hidden');
+        hiddenField.setAttribute('name', key);
+        hiddenField.setAttribute('value', params[key]);
+
+        form.appendChild(hiddenField);
+      }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+  }
+</script>
 </body>
 </html>
