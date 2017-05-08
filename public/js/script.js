@@ -1,10 +1,10 @@
 console.log('SKRIPTA');
 
 function startGame() {
-  // myGamePiece = new component(20, 10, "../images/car.png", 10, 10, "image");
-  // myObstacle  = new component(10, 10, "green", 30, 30, "obstacle");
-  myGamePiece = new component(20, 10, "red", 10, 10);
-  myObstacle  = new component(10, 10, "green", 30, 30);
+  myGamePiece = new component(60, 30, "../images/car.png", 10, 10, "image");
+  myObstacle  = new component(30, 30, "green", 300, 30, "obstacle");
+  // myGamePiece = new component(20, 10, "red", 10, 10);
+  // myObstacle  = new component(10, 10, "green", 30, 30);
   myGameArea.start();
 }
 
@@ -38,17 +38,33 @@ function startGame() {
 //   }
 // }
 
-function component(width, height, color, x, y) {
+function component(width, height, color, x, y, type) {
+    this.type = type;
+  if (type == "image") {
+    this.image = new Image();
+    this.image.src = color;
+  }
   this.width = width;
   this.height = height;
   this.speedX = 0;
   this.speedY = 0;
   this.x = x;
   this.y = y;
-  this.update = function() {
+  this.update = function () {
     ctx = myGameArea.context;
-    ctx.fillStyle = color;
-    ctx.fillRect(this.x, this.y, this.width, this.height);
+    if (type == "image") {
+      ctx.mozImageSmoothingEnabled = true;
+      ctx.webkitImageSmoothingEnabled = true;
+      ctx.msImageSmoothingEnabled = true;
+      ctx.imageSmoothingEnabled = true;
+      ctx.drawImage(this.image,
+        this.x,
+        this.y,
+        this.width, this.height);
+    } else {
+      ctx.fillStyle = color;
+      ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
   }
   this.crashWith = function(otherobj) {
     var myleft = this.x;
@@ -73,8 +89,8 @@ var myObstacle;
 var myGameArea = {
   canvas: document.createElement("canvas"),
   start: function () {
-    this.canvas.style.width  = "80%";
-    this.canvas.style.height = "60%";
+    this.canvas.width  = 1200;
+    this.canvas.height = 500;
     this.canvas.style.marginLeft = "10%";
     this.canvas.style.marginTop = "5%";
     this.context = this.canvas.getContext("2d");
