@@ -10,9 +10,9 @@ router.get('/', (req, res) => {
   res.sendFile(resolve('public/html/home.html'));
 });
 
-router.get('/startGame', (req, res) => {
+router.get('/game', (req, res) => {
   res.sendFile(resolve('public/html/game.html'));
-})
+});
 
 router.post('/save', (reg, res) => {
   const db = getDb();
@@ -22,5 +22,6 @@ router.post('/save', (reg, res) => {
       return res.status(500).json(err);
     }
   })
-})
+});
+
 export default router;
