@@ -96,7 +96,7 @@ var myGameArea = {
     this.context = this.canvas.getContext("2d");
     document.body.insertBefore(this.canvas, document.body.childNodes[0]);
     this.frameNo = 0;
-    this.interval = setInterval(updateGameArea, 20);
+    this.interval = setInterval(updateGameArea, 10);
   },
   clear: function () {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -118,8 +118,15 @@ function updateGameArea() {
   } else {
     myGameArea.clear();
     myObstacle.update();
+    // ne dozvoli autu da izađe van okvira
+    if (myGamePiece.x >= 0 && myGamePiece.x <= 1140)
     myGamePiece.x += myGamePiece.speedX;
+    if (myGamePiece.x < 0) myGamePiece.x = 0;
+    if (myGamePiece.x > 1140) myGamePiece.x = 1140;
+    if (myGamePiece.y >= 0 && myGamePiece.y <= 470)
     myGamePiece.y += myGamePiece.speedY;
+    if (myGamePiece.y < 0) myGamePiece.y = 0;
+    if (myGamePiece.y > 470) myGamePiece.y = 470;
     myGamePiece.update();
   }
 }
