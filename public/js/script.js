@@ -1,8 +1,8 @@
-console.log('SKRIPTA');
+'use strict';
 
 function startGame() {
-  // myGamePiece = new component(20, 10, "../images/car.png", 10, 10, "image");
-  // myObstacle  = new component(10, 10, "green", 30, 30, "obstacle");
+   //myGamePiece = new component(20, 10, "/images/car.png", 10, 10, "image");
+   //myObstacle  = new component(10, 10, "green", 30, 30, "obstacle");
   myGamePiece = new component(20, 10, "red", 10, 10);
   myObstacle  = new component(10, 10, "green", 30, 30);
   myGameArea.start();
@@ -46,7 +46,7 @@ function component(width, height, color, x, y) {
   this.x = x;
   this.y = y;
   this.update = function() {
-    ctx = myGameArea.context;
+    var ctx = myGameArea.context;
     ctx.fillStyle = color;
     ctx.fillRect(this.x, this.y, this.width, this.height);
   }

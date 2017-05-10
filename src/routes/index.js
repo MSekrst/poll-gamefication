@@ -1,7 +1,7 @@
-import {Router} from 'express';
-import {resolve} from 'path';
+import { Router } from 'express';
+import { resolve } from 'path';
 
-import {getDb} from '../mongo';
+import { getDb } from '../mongo';
 
 const router = Router();
 
@@ -16,13 +16,16 @@ router.get('/game', (req, res) => {
 
 router.post('/save', (req, res) => {
   const db = getDb();
+
+  console.log(req.body);
+
   db.collection('poll').insertOne(req.body, (err) => {
     if (err) {
       return res.status(500).json(err);
     }
-  })
+  });
 
-  res.redirect('/game');
+  res.status(200).end();
 });
 
 export default router;

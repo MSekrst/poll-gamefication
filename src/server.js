@@ -3,9 +3,11 @@ import bodyParser from 'body-parser';
 
 import { port, host } from './config/settings.js';
 import router from './routes/index.js';
-import {connectDatabase} from './mongo/index.js';
+import { connectDatabase } from './mongo/index.js';
 
 const app = express();
+
+// create database connections pool
 connectDatabase();
 
 app.use(bodyParser.urlencoded({ extended: false }));
