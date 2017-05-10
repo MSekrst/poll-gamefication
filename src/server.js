@@ -1,5 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import morgan from 'morgan';
 
 import { port, host } from './config/settings.js';
 import router from './routes/index.js';
@@ -9,6 +10,8 @@ const app = express();
 
 // create database connections pool
 connectDatabase();
+
+app.use(morgan('dev'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
