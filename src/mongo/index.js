@@ -4,7 +4,7 @@ import { mongoConnectionString } from '../config/settings';
 
 let dbHandler;
 
-module.exports.connectDatabase = function(){
+export const connectDatabase = () => {
   MongoClient.connect(mongoConnectionString, (err, db) => {
     if (err) {
       console.log('Error while connecting to the cloud', err);

@@ -17,6 +17,3 @@ database
 
 # log files
 *.log*
-
-# sensitive data
-src/config/sensitive.js

@@ -1,147 +1,241 @@
-console.log('SKRIPTA');
+'use strict';
 
-function startGame() {
-  // myGamePiece = new component(20, 10, "../images/car.png", 10, 10, "image");
-  // myObstacle  = new component(10, 10, "green", 30, 30, "obstacle");
-  myGamePiece = new component(20, 10, "red", 10, 10);
-  myObstacle  = new component(10, 10, "green", 30, 30);
-  myGameArea.start();
-}
+const doc = $(document);
 
-// function component(width, height, color, x, y, type) {
-//   this.type = type;
-//   if (type == "image") {
-//     this.image = new Image();
-//     this.image.src = color;
-//   }
-//   this.width = width;
-//   this.height = height;
-//   this.speedX = 0;
-//   this.speedY = 0;
-//   this.x = x;
-//   this.y = y;
-//   this.update = function () {
-//     ctx = myGameArea.context;
-//     if (type == "image") {
-//       ctx.drawImage(this.image,
-//         this.x,
-//         this.y,
-//         this.width, this.height);
-//     } else {
-//       ctx.fillStyle = color;
-//       ctx.fillRect(this.x, this.y, this.width, this.height);
-//     }
-//   }
-//   this.newPos = function () {
-//     this.x += this.speedX;
-//     this.y += this.speedY;
-//   }
-// }
+const screenWidth = doc.width() - 2;
+const screenHeight = doc.height() - 155;
 
-function component(width, height, color, x, y) {
-  this.width = width;
-  this.height = height;
-  this.speedX = 0;
-  this.speedY = 0;
-  this.x = x;
-  this.y = y;
-  this.update = function() {
-    ctx = myGameArea.context;
-    ctx.fillStyle = color;
-    ctx.fillRect(this.x, this.y, this.width, this.height);
+const sizeFactor = screenHeight / 80;
+const carSpeed = 1;
+
+class GameComponent {
+  constructor(options) {
+    if (options.url) {
+      this.image = new Image();
+      this.image.src = options.url;
+    }
+
+    if (options.color) {
+      this.color = options.color;
+    }
+
+    this.width = options.width;
+    this.height = options.height;
+    this.speedX = 0;
+    this.speedY = 0;
+    this.x = options.x;
+    this.y = options.y;
   }
-  this.crashWith = function(otherobj) {
-    var myleft = this.x;
-    var myright = this.x + (this.width);
-    var mytop = this.y;
-    var mybottom = this.y + (this.height);
-    var otherleft = otherobj.x;
-    var otherright = otherobj.x + (otherobj.width);
-    var othertop = otherobj.y;
-    var otherbottom = otherobj.y + (otherobj.height);
-    var crash = true;
+
+  update() {
+    const ctx = gameArea.context;
+
+    if (this.image) { // if element is car
+      // TODO - check Safari & Opera support
+      ctx.mozImageSmoothingEnabled = true;
+      ctx.webkitImageSmoothingEnabled = true;
+      ctx.msImageSmoothingEnabled = true;
+      ctx.imageSmoothingEnabled = true;
+
+      ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+    } else { // element is obstacle
+      ctx.fillStyle = this.color;
+      ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
+  }
+
+  crashWith(obstacle) {
+    if (!this || !obstacle) {
+      return false;
+    }
+
+    const myleft = this.x;
+    const myright = this.x + (this.width);
+    const mytop = this.y;
+    const mybottom = this.y + (this.height);
+
+    const otherleft = obstacle.x;
+    const otherright = obstacle.x + (obstacle.width);
+    const othertop = obstacle.y;
+    const otherbottom = obstacle.y + (obstacle.height);
+
+    let crash = true;
+
     if ((mybottom < othertop) || (mytop > otherbottom) || (myright < otherleft) || (myleft > otherright)) {
       crash = false;
     }
     return crash;
   }
+
 }
 
-var myGamePiece;
-var myObstacle;
+class GameArea {
+  constructor() {
+    this.canvas = document.createElement('canvas');
+  }
 
-var myGameArea = {
-  canvas: document.createElement("canvas"),
-  start: function () {
-    this.canvas.style.width  = "80%";
-    this.canvas.style.height = "60%";
-    this.canvas.style.marginLeft = "10%";
-    this.canvas.style.marginTop = "5%";
-    this.context = this.canvas.getContext("2d");
-    document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-    this.frameNo = 0;
+  start() {
+    this.canvas.width = screenWidth;
+    this.canvas.height = screenHeight;
+    this.context = this.canvas.getContext('2d');
+
+    $('#game-container').html(this.canvas);
+
     this.interval = setInterval(updateGameArea, 20);
-  },
-  clear: function () {
+  }
+
+  clear() {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-  },
-  stop: function () {
+  }
+
+  stop() {
     clearInterval(this.interval);
   }
 }
 
-function updateGameArea() {
-  if (myGamePiece.crashWith(myObstacle)) {
-    newPool(); //radi novu anketu
+const car = new GameComponent({
+  width: sizeFactor * 10,
+  height: sizeFactor * 5,
+  url: "../images/car.png",
+  x: 0,
+  y: 0,
+});
 
-    myGameArea.clear();
-    myObstacle.update();
-    myGamePiece.x += myGamePiece.speedX;
-    myGamePiece.y += myGamePiece.speedY;
-    myGamePiece.update();
-  } else {
-    myGameArea.clear();
-    myObstacle.update();
-    myGamePiece.x += myGamePiece.speedX;
-    myGamePiece.y += myGamePiece.speedY;
-    myGamePiece.update();
-  }
+let pollPickups = [];
+
+const segmentSize = (screenWidth - 10 * sizeFactor) / 5;
+
+// generate pickup points
+for (let i = 0; i < 5; i++) {
+  const pickupPoint = new GameComponent({
+      width: Math.round(sizeFactor * 5),
+      height: Math.round(sizeFactor * 5),
+      url: "../images/bolt.png",
+      x: i === 0 ? Math.random() * (segmentSize - 10 * sizeFactor - 1) + 1 + 10 * sizeFactor : Math.random() * segmentSize + (i * segmentSize),
+      y: i === 0 ? Math.random() * (screenHeight - sizeFactor * 5) + 1  + 5 * sizeFactor : Math.random() * (screenHeight - 5 * sizeFactor),
+  });
+
+  pollPickups.push(pickupPoint);
+
 }
 
-function moveup() {
-  myGamePiece.speedY = -1;
-}
+let gameArea = new GameArea();
 
-function movedown() {
-  myGamePiece.speedY = 1;
-}
-
-function moveleft() {
-  myGamePiece.speedX = -1;
-}
-
-function moveright() {
-  myGamePiece.speedX = 1;
-}
-
-function clearmove() {
-  myGamePiece.speedX = 0;
-  myGamePiece.speedY = 0;
-}
-
-document.onkeydown = function (e) {
-  var code = e.keyCode ? e.keyCode : e.which;
-  if (code === 38) { //up key
-    moveup();
-  } else if (code === 40) { //down key
-    movedown();
-  } else if (code === 37) { //down key
-    moveleft();
-  } else if (code === 39) { //down key
-    moveright();
-  }
+const startGame = () => {
+  gameArea.start();
 };
 
-document.onkeyup = function () {
-  clearmove();
+function updateGameArea() {
+  gameArea.clear();
+
+  const remainingPickups = [];
+
+  pollPickups.forEach(point => {
+    if (car.crashWith(point)) {
+      newPoll();
+
+      car.x += car.speedX;
+      car.y += car.speedY;
+
+      // without this with each pickup game gets slower
+      if (pollPickups.length > 1) {
+        gameArea.interval = setInterval(updateGameArea, 6 * pollPickups.length);
+      }
+
+      car.update();
+    } else {
+      point.update();
+
+      remainingPickups.push(point);
+
+      if (car.x >= 0 && car.x <= screenWidth - car.width)
+        car.x += car.speedX;
+      if (car.x < 0) car.x = 0;
+      if (car.x > screenWidth - car.width) car.x = screenWidth - car.width;
+      if (car.y >= 0 && car.y <= screenHeight - car.height)
+        car.y += car.speedY;
+      if (car.y < 0) car.y = 0;
+      if (car.y > screenHeight - car.height) car.y = screenHeight - car.height;
+
+      car.update();
+    }
+  });
+
+  pollPickups = remainingPickups;
 }
+
+function moveUp() {
+  car.speedY = -carSpeed;
+
+  if (!upBtn.hasClass('btn-success')) {
+    upBtn.addClass('btn-success');
+  }
+}
+
+function moveDown() {
+  car.speedY = carSpeed;
+
+  if (!downBtn.hasClass('btn-success')) {
+    downBtn.addClass('btn-success');
+  }
+}
+
+function moveLeft() {
+  car.speedX = -carSpeed;
+
+  if (!leftBtn.hasClass('btn-success')) {
+    leftBtn.addClass('btn-success');
+  }
+}
+
+function moveRight() {
+  car.speedX = carSpeed;
+
+  if (!rightBtn.hasClass('btn-success')) {
+    rightBtn.addClass('btn-success');
+  }
+}
+
+function clearMove() {
+  car.speedX = 0;
+  car.speedY = 0;
+
+  upBtn.removeClass('btn-success');
+  leftBtn.removeClass('btn-success');
+  rightBtn.removeClass('btn-success');
+  downBtn.removeClass('btn-success');
+}
+
+// Event assigns
+// TODO remove handlers when modal is shown
+doc.keydown(e => {
+  const code = e.keyCode ? e.keyCode : e.which;
+
+  switch (code) {
+    case 38: return moveUp();
+    case 40: return moveDown();
+    case 37: return moveLeft();
+    case 39: return moveRight();
+    default: return clearMove();
+  }
+});
+
+doc.keyup(() => {
+  clearMove();
+});
+
+const upBtn = $('#move-up');
+const leftBtn = $('#move-left');
+const rightBtn = $('#move-right');
+const downBtn = $('#move-down');
+
+upBtn.mousedown(moveUp);
+upBtn.mouseup(clearMove);
+leftBtn.mousedown(moveLeft);
+leftBtn.mouseup(clearMove);
+rightBtn.mousedown(moveRight);
+rightBtn.mouseup(clearMove);
+downBtn.mousedown(moveDown);
+downBtn.mouseup(clearMove);
+
+$('body').ready(startGame);

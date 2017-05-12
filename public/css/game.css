@@ -1,0 +1,22 @@
+canvas {
+  border: 1px solid #d3d3d3;
+  background-color: #f1f1f1;
+}
+
+span {
+  font-weight: bold;
+}
+
+.game-buttons-container {
+  width: 100%;
+  text-align: center;
+}
+
+.game-button {
+  margin: 5px;
+  font-weight: 900;
+}
+
+#move-right {
+  margin-left: 45px;
+}
