@@ -10,52 +10,59 @@ let soc1;
 let soc2;
 let cost;
 
-const pollModal = $('#poll-modal');
+const pollDiv = $('#poll');
+const pollContent = $('#poll-content');
+const background = $('#background');
 
 function newPoll() {
-  startTime = new Date().getMilliseconds();
+    startTime = new Date().getMilliseconds();
 
-  const n = (5 - start + polls.length) % 5 + 1;
-  daytime = times[polls.length];
-  soc1 = Math.floor((Math.random() * 20) + 20 * (n - 1));
-  soc2 = Math.floor((Math.random() * (100 - soc1)) + soc1);
-  cost = Math.floor((Math.random() * 100));
+    const n = (5 - start + polls.length) % 5 + 1;
+    daytime = times[polls.length];
+    soc1 = Math.floor((Math.random() * 20) + 20 * (n - 1));
+    soc2 = Math.floor((Math.random() * (100 - soc1)) + soc1);
+    cost = Math.floor((Math.random() * 100));
 
-  $('#daytime').html(daytime);
-  $('#soc1').html(soc1);
-  $('#soc2').html(soc2);
-  $('#cost').html(cost);
+    $('#daytime').html(daytime);
+    $('#soc1').html(soc1);
+    $('#soc2').html(soc2);
+    $('#cost').html(cost);
 
-  pollModal.modal('show');
+    background.show();
+    pollDiv.slideDown(700);
+    pollContent.delay(500).fadeIn();
 }
 
 const dataSaved = () => {
-  console.log('Data saved successfully')
+    console.log('Data saved successfully')
 
-  collectUx();
+    collectUx();
 };
 
 $('#poll-submit').click(e => {
-  const wtp = 124;
-  const time = (new Date().getMilliseconds() - startTime) / 1000;
+    const wtp = 124;
+    const time = (new Date().getMilliseconds() - startTime) / 1000;
 
-  const poll = { daytime, soc1, soc2, cost, wtp, time };
+    const poll = {daytime, soc1, soc2, cost, wtp, time};
 
-  polls.push(poll);
+    polls.push(poll);
 
-  if (polls.length === 5) {
-    $.ajax({
-      method: 'POST',
-      url: '/save',
-      data: JSON.stringify({ polls, user: {}, experience: {} }),
-      contentType: 'application/json',
-      success: dataSaved,
-    });
-  }
+    if (polls.length === 5) {
+        $.ajax({
+            method: 'POST',
+            url: '/save',
+            data: JSON.stringify({polls, user: {}, experience: {}}),
+            contentType: 'application/json',
+            success: dataSaved
+        });
+    }
 
-  e.target.blur();
+    e.target.blur();
 
-  pollModal.modal('hide');
+    background.hide();
+    pollContent.fadeOut();
+    pollDiv.delay(200).slideUp();
+
 });
 
 //function post(path, params, method) {
