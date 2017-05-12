@@ -13,4 +13,3 @@ $('#user-submit').on('click touchstart', e => {
 });
 
 userModal.modal('show');
-

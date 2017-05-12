@@ -211,9 +211,27 @@ function clearMove() {
 doc.keydown(e => {
   const code = e.keyCode ? e.keyCode : e.which;
 
-  if($('#poll-modal').is(':visible')) {
+  if($('#user-modal').is(':visible')){
+    if(code == 13){
+      $('#user-submit').click();
+    }
     return clearMove();
   }
+
+  if($('#poll-modal').is(':visible')) {
+    if(code == 13){
+      $('#poll-submit').click();
+    }
+    return clearMove();
+  }
+
+  if($('#experience-modal').is(':visible')){
+    if(code == 13){
+      $('#experience-submit').click();
+    }
+    return clearMove();
+  }
+
   switch (code) {
     case 38: return moveUp();
     case 40: return moveDown();

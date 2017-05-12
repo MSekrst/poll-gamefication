@@ -6,77 +6,103 @@
   <link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
 </head>
 <body>
-  <div id="game-container">
+<div id="game-container">
 
-  </div>
+</div>
 
-  <div class="game-buttons-container">
-    <button class="btn btn-secondary game-button" id="move-up">&uarr;</button><br />
-    <button class="btn btn-secondary game-button" id="move-left">&larr;</button>
-    <button class="btn btn-secondary game-button" id="move-right">&rarr;</button><br />
-    <button class="btn btn-secondary game-button" id="move-down">&darr;</button>
-  </div>
+<div class="game-buttons-container">
+  <button class="btn btn-secondary game-button" id="move-up">&uarr;</button>
+  <br/>
+  <button class="btn btn-secondary game-button" id="move-left">&larr;</button>
+  <button class="btn btn-secondary game-button" id="move-right">&rarr;</button>
+  <br/>
+  <button class="btn btn-secondary game-button" id="move-down">&darr;</button>
+</div>
 
-  <div id="user-modal" class="modal fade" data-keyboard="false" data-backdrop="static">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Unesi podatke</h5>
+<div id="user-modal" class="modal fade" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Unesi podatke</h5>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+
         </div>
-        <div class="modal-body">
-          <div class="form-group">
-
-          </div>
-          <button id="user-submit" class="btn btn-primary">Igraj</button>
-        </div>
+        <button id="user-submit" class="btn btn-primary">Igraj</button>
       </div>
     </div>
   </div>
+</div>
 
-  <div id="poll-modal" class="modal fade" data-keyboard="false" data-backdrop="static">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Anketa</h5>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            Došli ste u <span id="daytime">7:00</span> na parkiralište.
-            <br>
-            Na parkiralištu planirate ostati <strong>1 puni sat</strong>.
-            <br>
-            Trenutačno stanje Vaše baterije je <span id="soc1">76</span><strong>%</strong>.
-            <br>
-            Pri odlasku s parkirališta status baterije bio bi Vam <span
-            id="soc2">76</span><strong>%</strong>.
-            <br>
-            U slučaju punjenja kod kuće trošak bi bio : <span id="cost">76</span><strong> novčanih
-            jedinica</strong>
-            <br>
-            <br>
-            Koliko ste spremni platiti za uslugu punjenja EV?
-          </div>
+<div id="poll-modal" class="modal fade" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Anketa</h5>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          Došli ste u <span id="daytime">7:00</span> na parkiralište.
           <br>
-          <input type="range"/>
-          <hr>
-          <div class="text-right">
-            <button id="poll-submit" class="btn btn-primary">Pohrani</button>
-          </div>
+          Na parkiralištu planirate ostati <strong>1 puni sat</strong>.
+          <br>
+          Trenutačno stanje Vaše baterije je <span id="soc1">76</span><strong>%</strong>.
+          <br>
+          Pri odlasku s parkirališta status baterije bio bi Vam <span
+          id="soc2">76</span><strong>%</strong>.
+          <br>
+          U slučaju punjenja kod kuće trošak bi bio : <span id="cost">76</span><strong> novčanih
+          jedinica</strong>
+          <br>
+          <br>
+          Koliko ste spremni platiti za uslugu punjenja EV?
+        </div>
+        <br>
+        <input type="range"/>
+        <hr>
+        <div class="text-right">
+          <button id="poll-submit" class="btn btn-primary">Pohrani</button>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-  <link rel="stylesheet" href="/css/global.css">
-  <link rel="stylesheet" href="/css/game.css">
+<div id="experience-modal" class="modal fade" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Korisničko iskustvo</h5>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <p>Sviđa li vam se više rješevanje ankete preko igranja igrice ili klasični način?</p>
+          <p style="margin: 10px">Igra <input type="radio" name="tip" value="game" checked>
+              Klasični način <input type="radio" name="tip" value="classic"></p>
+        </div>
+        <button id="experience-submit" class="btn btn-primary">Pohrani</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-  <script src="../js/game.js"></script>
-  <script src="../js/user.js"></script>
-  <script src="../js/poll.js"></script>
-  <script src="../js/ux.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+      integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/global.css">
+<link rel="stylesheet" href="/css/game.css">
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+<script src="../js/game.js"></script>
+<script src="../js/user.js"></script>
+<script src="../js/poll.js"></script>
+<script src="../js/ux.js"></script>
 </body>
 </html>

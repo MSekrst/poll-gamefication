@@ -22,6 +22,7 @@ router.post('/save', (req, res) => {
   const poll = {
     user: req.body.user,
     answers: req.body.polls,
+    experience: req.body.experience
   };
 
   const db = getDb();
