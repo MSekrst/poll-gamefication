@@ -232,13 +232,11 @@ const leftBtn = $('#move-left');
 const rightBtn = $('#move-right');
 const downBtn = $('#move-down');
 
-upBtn.mousedown(moveUp);
+upBtn.on('mousedown touchstart', moveUp);
 upBtn.mouseup(clearMove);
-leftBtn.mousedown(moveLeft);
+leftBtn.on('mousedown touchstart', moveLeft);
 leftBtn.mouseup(clearMove);
-rightBtn.mousedown(moveRight);
+rightBtn.on('mousedown touchstart', moveRight);
 rightBtn.mouseup(clearMove);
-downBtn.mousedown(moveDown);
+downBtn.on('mousedown touchstart', moveDown);
 downBtn.mouseup(clearMove);
-
-$('body').ready(startGame);
