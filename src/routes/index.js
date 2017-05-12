@@ -26,7 +26,7 @@ router.post('/save', (req, res) => {
 
   const db = getDb();
 
-  db.collection('polls').insertOne(req.body, (err) => {
+  db.collection('polls').insertOne(poll, (err) => {
     if (err) {
       return res.status(500).json(err);
     }
