@@ -211,6 +211,9 @@ function clearMove() {
 doc.keydown(e => {
   const code = e.keyCode ? e.keyCode : e.which;
 
+  if($('#poll-modal').is(':visible')) {
+    return clearMove();
+  }
   switch (code) {
     case 38: return moveUp();
     case 40: return moveDown();
