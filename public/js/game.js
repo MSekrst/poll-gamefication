@@ -218,7 +218,7 @@ doc.keydown(e => {
     return clearMove();
   }
 
-  if($('#poll-modal').is(':visible')) {
+  if($('#poll').is(':visible')) {
     if(code == 13){
       $('#poll-submit').click();
     }

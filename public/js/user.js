@@ -1,8 +1,9 @@
 'use strict';
 
 const userModal = $('#user-modal');
-
 const user = {};
+
+userModal.modal('show');
 
 $('#user-submit').on('click touchstart', e => {
   startGame();
@@ -11,5 +12,3 @@ $('#user-submit').on('click touchstart', e => {
 
   userModal.modal('hide');
 });
-
-userModal.modal('show');

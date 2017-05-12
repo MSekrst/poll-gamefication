@@ -1,7 +1,3 @@
-const dataSaved = () => {
-  console.log('data saved');
-};
-
 const collectUx = () => {
   $('#experience-modal').modal('show');
 };
