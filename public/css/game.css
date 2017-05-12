@@ -20,3 +20,54 @@ span {
 #move-right {
   margin-left: 45px;
 }
+
+.sex-wrapper {
+  display: inline-block;
+  text-align: center;
+}
+
+.sex-image {
+  width: 30%;
+  margin-right: 10px;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+label {
+  font-weight: 700;
+  margin-right: 10px;
+}
+
+.input-wrapper {
+  padding-top: 10px;
+  width: 100%;
+}
+
+.user-input {
+  width: 100%;
+}
+
+.styled-select {
+  -webkit-appearance: button;
+  -webkit-user-select: none;
+  background: transparent;
+  background-image: url(http://i62.tinypic.com/15xvbd5.png);
+  background-position: 98% center;
+  background-repeat: no-repeat;
+  border: 1px solid rgba(0,0,0,.15);
+  color:black;
+  padding: 2px;
+  width: 100%;
+  border-radius: 0;
+  font-size: 16px;
+}
+
+.right {
+  float: right;
+}

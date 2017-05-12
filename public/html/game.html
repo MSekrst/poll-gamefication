@@ -21,13 +21,50 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Unesi podatke</h5>
+          <h5 class="modal-title"><b>Unesi podatke</b></h5>
         </div>
         <div class="modal-body">
-          <div class="form-group">
-
-          </div>
-          <button id="user-submit" class="btn btn-primary">Igraj</button>
+          <form>
+            <div class="form-group">
+              <div class="sex-container">
+                <h6>Spol:</h6>
+                <div class="sex-wrapper">
+                  <img class="sex-image" alt="male" src="../images/boy.png">
+                  <input type="radio" name="user-sex" value="male">
+                </div>
+                <div class="sex-wrapper">
+                  <img class="sex-image" alt="male" src="../images/boy.png">
+                  <input type="radio" name="user-sex" value="female">
+                </div>
+              </div>
+              <div class="input-wrapper">
+                <input class="user-input" type="number" min="0" max="150" placeholder="Godine">
+              </div>
+              <div class="input-wrapper">
+                <select class="styled-select">
+                  <option value="">Radni status:</option>
+                  <option value="ucenik">Učenik</option>
+                  <option value="student">Student</option>
+                  <option value="zaposlen">Zaposlen</option>
+                  <option value="nezaposlen">Nezaposlen</option>
+                  <option value="umirovljenik">Umirovljenik</option>
+                </select>
+              </div>
+              <div class="input-wrapper">
+                <input class="user-input" type="number" min="0" placeholder="Godišnji prihod">
+              </div>
+              <div class="input-wrapper">
+                <select class="styled-select">
+                  <option value="">Upoznatost s konceptom EV:</option>
+                  <option value="nikad">Nikad čuo</option>
+                  <option value="ne-zna">Čuo ali nisam upoznat</option>
+                  <option value="zna">Znam ponešto</option>
+                  <option value="odlicno">Odlično sam upoznat</option>
+                </select>
+              </div>
+            </div>
+            <button id="user-submit" class="btn btn-primary right">Igraj</button>
+          </form>
         </div>
       </div>
     </div>
