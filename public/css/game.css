@@ -24,19 +24,13 @@ span {
 .sex-wrapper {
   display: inline-block;
   text-align: center;
+  width: 49%;
+  padding-bottom: 10px;
 }
 
 .sex-image {
   width: 30%;
   margin-right: 10px;
-}
-
-.left {
-  float: left;
-}
-
-.right {
-  float: right;
 }
 
 label {
@@ -46,7 +40,6 @@ label {
 
 .input-wrapper {
   padding-top: 10px;
-  width: 100%;
 }
 
 .user-input {
