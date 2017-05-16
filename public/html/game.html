@@ -27,47 +27,52 @@
         <h5 class="modal-title"><b>Unesi podatke</b></h5>
       </div>
       <div class="modal-body">
-        <!--<form>-->
-          <div class="form-group">
-            <div class="sex-container">
-              <h6>Spol:</h6>
-              <div class="sex-wrapper">
-                <img class="sex-image" alt="male" src="../images/boy.png">
-                <input type="radio" name="user-sex" value="male">
-              </div>
-              <div class="sex-wrapper">
-                <img class="sex-image" alt="male" src="../images/girl.png">
-                <input type="radio" name="user-sex" value="female">
-              </div>
+        <div class="form-group">
+          <div class="sex-container">
+            <h6>Spol:</h6>
+            <div class="sex-wrapper">
+              <img class="sex-image" alt="Male" src="../images/boy.png">
+              <input type="radio" name="user-sex" value="M">
             </div>
-            <div class="input-wrapper">
-              <input class="user-input" type="number" min="0" max="150" placeholder="Godine">
-            </div>
-            <div class="input-wrapper">
-              <select class="styled-select">
-                <option value="">Radni status:</option>
-                <option value="ucenik">Učenik</option>
-                <option value="student">Student</option>
-                <option value="zaposlen">Zaposlen</option>
-                <option value="nezaposlen">Nezaposlen</option>
-                <option value="umirovljenik">Umirovljenik</option>
-              </select>
-            </div>
-            <div class="input-wrapper">
-              <input class="user-input" type="number" min="0" placeholder="Godišnji prihod">
-            </div>
-            <div class="input-wrapper">
-              <select class="styled-select">
-                <option value="">Upoznatost s konceptom EV:</option>
-                <option value="nikad">Nikad čuo</option>
-                <option value="ne-zna">Čuo ali nisam upoznat</option>
-                <option value="zna">Znam ponešto</option>
-                <option value="odlicno">Odlično sam upoznat</option>
-              </select>
+            <div class="sex-wrapper">
+              <img class="sex-image" alt="Female" src="../images/girl.png">
+              <input type="radio" name="user-sex" value="F">
             </div>
           </div>
-          <button id="user-submit" class="btn btn-primary right">Igraj</button>
-        <!--</form>-->
+          <div class="input-wrapper">
+            <input class="user-input" id="age" type="number" min="0" max="150" placeholder="Godine">
+          </div>
+          <div class="input-wrapper">
+            <select id="status" class="styled-select">
+              <option value="">Radni status:</option>
+              <option value="ucenik">Učenik</option>
+              <option value="student">Student</option>
+              <option value="zaposlen">Zaposlen</option>
+              <option value="nezaposlen">Nezaposlen</option>
+              <option value="umirovljenik">Umirovljenik</option>
+            </select>
+          </div>
+          <div class="input-wrapper">
+            <div class="input-group">
+              <input id="income" class="user-input" type="number" min="0" placeholder="Netto godišnji prihod">
+              <span class="input-group-addon" id="basic-addon1">KN</span>
+            </div>
+
+          </div>
+          <div class="input-wrapper">
+            <select id="knowledge" class="styled-select">
+              <option value="">Upoznatost s konceptom električnih vozila:</option>
+              <option value="nikad">Nikad čuo</option>
+              <option value="ne-zna">Čuo ali nisam upoznat</option>
+              <option value="zna">Znam ponešto</option>
+              <option value="odlicno">Odlično sam upoznat</option>
+            </select>
+          </div>
+        </div>
+        <div id="validation-alert" class="alert alert-danger" role="alert">
+          <strong>Molimo Vas iskreno popunite sva polja!&nbsp;</strong>Podaci se prikupljaju samo za potrebe ankete.
+        </div>
+        <button id="user-submit" class="btn btn-primary right">Igraj</button>
       </div>
     </div>
   </div>
