@@ -96,7 +96,7 @@ class GameArea {
 const car = new GameComponent({
   width: sizeFactor * 10,
   height: sizeFactor * 5,
-  url: "../images/car.png",
+  url: "../images/carBlue.png",
   x: 0,
   y: 0,
 });
