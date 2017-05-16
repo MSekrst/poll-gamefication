@@ -15,19 +15,21 @@ router.get('/game', (req, res) => {
 });
 
 router.get('/finish', (req, res) => {
-  res.sendFile(resolve('public/html/finish.html'));
+  res.sendFile(resolve('public/html/end.html'));
+});
+
+router.post('/user', (req, res) => {
+  console.log(req.body);
+
+  // TODO save user
+
+  res.status(201).end();
 });
 
 router.post('/save', (req, res) => {
-  const poll = {
-    user: req.body.user,
-    answers: req.body.polls,
-    experience: req.body.experience
-  };
-
   const db = getDb();
 
-  db.collection('polls').insertOne(poll, (err) => {
+  db.collection('polls').insertOne(req.body, (err) => {
     if (err) {
       return res.status(500).json(err);
     }
