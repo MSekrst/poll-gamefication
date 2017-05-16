@@ -1,121 +1,110 @@
 canvas {
-  border: 1px solid #d3d3d3;
-  background-color: #f1f1f1;
+    border: 1px solid #d3d3d3;
+    background-color: #f1f1f1;
 }
 
 span {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .game-buttons-container {
-  width: 100%;
-  text-align: center;
+    width: 100%;
+    text-align: center;
 }
 
 .game-button {
-  margin: 5px;
-  font-weight: 900;
+    margin: 5px;
+    font-weight: 900;
 }
 
 #move-right {
-  margin-left: 45px;
+    margin-left: 45px;
 }
 
 .sex-wrapper {
-  display: inline-block;
-  text-align: center;
-  width: 49%;
-  padding-bottom: 10px;
+    display: inline-block;
+    text-align: center;
+    width: 49%;
+    padding-bottom: 10px;
 }
 
 .sex-image {
-  width: 30%;
-  margin-right: 10px;
+    width: 30%;
+    margin-right: 10px;
 }
 
 label {
-  font-weight: 700;
-  margin-right: 10px;
+    font-weight: 700;
+    margin-right: 10px;
 }
 
 .input-wrapper {
-  padding-top: 10px;
+    padding-top: 10px;
 }
 
 .user-input {
-  width: 100%;
+    width: 100%;
 }
 
 .styled-select {
-  -webkit-appearance: button;
-  -webkit-user-select: none;
-  background: transparent;
-  background-image: url(http://i62.tinypic.com/15xvbd5.png);
-  background-position: 98% center;
-  background-repeat: no-repeat;
-  border: 1px solid rgba(0,0,0,.15);
-  color:black;
-  padding: 2px;
-  width: 100%;
-  border-radius: 0;
-  font-size: 16px;
+    -webkit-appearance: button;
+    -webkit-user-select: none;
+    background: transparent;
+    background-image: url(http://i62.tinypic.com/15xvbd5.png);
+    background-position: 98% center;
+    background-repeat: no-repeat;
+    border: 1px solid rgba(0, 0, 0, .15);
+    color: black;
+    padding: 2px;
+    width: 100%;
+    border-radius: 0;
+    font-size: 16px;
 }
 
 .right {
-  float: right;
+    float: right;
 }
 
 #background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #000;
-  opacity: 0.6;
-  display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.6;
+    display: none;
 }
 
-#poll {
-  font-size: 22px;
-  display: none;
-  position: fixed;
-  top: 7.5%;
-  left: 15%;
-  z-index: 999999;
-  width: 70%;
-  height: 85%;
+#poll-modal {
+    height: 100%;
+    max-height: 600px;
+    max-width: 800px;
+    margin: 30px auto 0 auto;
 }
 
-#poll img {
-  position: fixed;
-  z-index: -1;
-  background-size: cover;
-  height: inherit;
-  width: inherit;
+.cover {
+    background: url(../images/carDayMen.png);
+    height: 100%;
 }
 
 #poll-content {
-  display: none;
-}
-
-#opis {
-  position: fixed;
-  top: 20%;
-  left: 30%;
-}
-
-#pitanje {
-  position: fixed;
-  top: 75%;
-  left: 50%;
+    display: none;
+    text-align: center;
+    font-size: larger;
+    background-color: rgba(245, 245, 245, 0.6);
+    width: 80%;
+    margin: 40px auto 0 auto;
+    padding: 20px;
+    border-radius: 5px;
 }
 
 #slider {
-  margin-left: 12%;
-  width: 60%;
+    margin-left: 12%;
+    width: 60%;
+
 }
 
 #sliderNum {
-  width: 12%;
+    width: 12%;
 }

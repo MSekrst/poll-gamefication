@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Igra</title>
-  <link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Igra</title>
+    <link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
 </head>
 <body>
 <div id="game-container">
@@ -11,149 +11,149 @@
 </div>
 
 <div class="game-buttons-container">
-  <button class="btn btn-secondary game-button" id="move-up">&uarr;</button>
-  <br/>
-  <button class="btn btn-secondary game-button" id="move-left">&larr;</button>
-  <button class="btn btn-secondary game-button" id="move-right">&rarr;</button>
-  <br/>
-  <button class="btn btn-secondary game-button" id="move-down">&darr;</button>
+    <button class="btn btn-secondary game-button" id="move-up">&uarr;</button>
+    <br/>
+    <button class="btn btn-secondary game-button" id="move-left">&larr;</button>
+    <button class="btn btn-secondary game-button" id="move-right">&rarr;</button>
+    <br/>
+    <button class="btn btn-secondary game-button" id="move-down">&darr;</button>
 </div>
 
 
 <div id="user-modal" class="modal fade" data-keyboard="false" data-backdrop="static">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title"><b>Unesi podatke</b></h5>
-      </div>
-      <div class="modal-body">
-        <!--<form>-->
-          <div class="form-group">
-            <div class="sex-container">
-              <h6>Spol:</h6>
-              <div class="sex-wrapper">
-                <img class="sex-image" alt="male" src="../images/boy.png">
-                <input type="radio" name="user-sex" value="male">
-              </div>
-              <div class="sex-wrapper">
-                <img class="sex-image" alt="male" src="../images/girl.png">
-                <input type="radio" name="user-sex" value="female">
-              </div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><b>Unesi podatke</b></h5>
             </div>
-            <div class="input-wrapper">
-              <input class="user-input" type="number" min="0" max="150" placeholder="Godine">
+            <div class="modal-body">
+                <!--<form>-->
+                <div class="form-group">
+                    <div class="sex-container">
+                        <h6>Spol:</h6>
+                        <div class="sex-wrapper">
+                            <img class="sex-image" alt="male" src="../images/boy.png">
+                            <input type="radio" name="user-sex" value="male">
+                        </div>
+                        <div class="sex-wrapper">
+                            <img class="sex-image" alt="male" src="../images/girl.png">
+                            <input type="radio" name="user-sex" value="female">
+                        </div>
+                    </div>
+                    <div class="input-wrapper">
+                        <input class="user-input" type="number" min="0" max="150" placeholder="Godine">
+                    </div>
+                    <div class="input-wrapper">
+                        <select class="styled-select">
+                            <option value="">Radni status:</option>
+                            <option value="ucenik">Učenik</option>
+                            <option value="student">Student</option>
+                            <option value="zaposlen">Zaposlen</option>
+                            <option value="nezaposlen">Nezaposlen</option>
+                            <option value="umirovljenik">Umirovljenik</option>
+                        </select>
+                    </div>
+                    <div class="input-wrapper">
+                        <input class="user-input" type="number" min="0" placeholder="Godišnji prihod">
+                    </div>
+                    <div class="input-wrapper">
+                        <select class="styled-select">
+                            <option value="">Upoznatost s konceptom EV:</option>
+                            <option value="nikad">Nikad čuo</option>
+                            <option value="ne-zna">Čuo ali nisam upoznat</option>
+                            <option value="zna">Znam ponešto</option>
+                            <option value="odlicno">Odlično sam upoznat</option>
+                        </select>
+                    </div>
+                </div>
+                <button id="user-submit" class="btn btn-primary right">Igraj</button>
+                <!--</form>-->
             </div>
-            <div class="input-wrapper">
-              <select class="styled-select">
-                <option value="">Radni status:</option>
-                <option value="ucenik">Učenik</option>
-                <option value="student">Student</option>
-                <option value="zaposlen">Zaposlen</option>
-                <option value="nezaposlen">Nezaposlen</option>
-                <option value="umirovljenik">Umirovljenik</option>
-              </select>
-            </div>
-            <div class="input-wrapper">
-              <input class="user-input" type="number" min="0" placeholder="Godišnji prihod">
-            </div>
-            <div class="input-wrapper">
-              <select class="styled-select">
-                <option value="">Upoznatost s konceptom EV:</option>
-                <option value="nikad">Nikad čuo</option>
-                <option value="ne-zna">Čuo ali nisam upoznat</option>
-                <option value="zna">Znam ponešto</option>
-                <option value="odlicno">Odlično sam upoznat</option>
-              </select>
-            </div>
-          </div>
-          <button id="user-submit" class="btn btn-primary right">Igraj</button>
-        <!--</form>-->
-      </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <div id="background"></div>
 
-<div id="poll">
-  <img src="../images/carDayMen.png">
-  <div id="poll-content">
-    <div id="opis">
-      Došli ste u <span id="daytime">7:00</span> na parkiralište.
-      <br>
-      Na parkiralištu planirate ostati <strong>1 puni sat</strong>.
-      <br>
-      Trenutačno stanje Vaše baterije je <span id="soc1">76</span><strong>%</strong>.
-      <br>
-      Pri odlasku s parkirališta status baterije bio bi Vam <span
-      id="soc2">76</span><strong>%</strong>.
-      <br>
-      U slučaju punjenja kod kuće trošak bi bio : <span id="cost">76</span><strong> novčanih
-      jedinica</strong>
-      <br>
-      <br>
-    </div>
-    <div id="pitanje">
-      Koliko ste spremni platiti za uslugu punjenja EV?
-      <br>
-      <input id="slider" type="range" value="0" min="0" max="300"/>
-      <input id="sliderNum" type="number" value="0" min="0" max="300">
-      <br>
-      <div class="text-right">
-        <button id="poll-submit" class="btn btn-primary" style="margin-top: 2%">Pohrani</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div id="experience-modal" class="modal fade" data-keyboard="false" data-backdrop="static">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Korisničko iskustvo</h5>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <p>Sviđa li vam se više rješevanje ankete preko igranja igrice ili klasični način?</p>
-          <p style="margin: 10px">Igra <input type="radio" name="tip" value="game" checked>
-            Klasični način <input type="radio" name="tip" value="classic"></p>
+<div id="poll" class="modal">
+    <div class="modal-content" id="poll-modal">
+        <div class="cover">
+            <div id="poll-content">
+                <p>Došli ste u <span id="daytime">7:00</span> na parkiralište.
+                    <br>
+                    Na parkiralištu planirate ostati <strong>1 puni sat</strong>.
+                    <br>
+                    Trenutačno stanje Vaše baterije je <span id="soc1">76</span><strong>%</strong>.
+                    <br>
+                    Pri odlasku s parkirališta status baterije bio bi Vam <span
+                            id="soc2">76</span><strong>%</strong>.
+                    <br>
+                    U slučaju punjenja kod kuće trošak bi bio : <span id="cost">76</span><strong> novčanih
+                        jedinica</strong>
+                    <br>
+                    <br>
+                    <strong>Koliko ste spremni platiti za uslugu punjenja električnog vozila?</strong>
+                    <br>
+                </p>
+                <input id="slider" type="range" value="0" min="0" max="300"/>
+                <input id="sliderNum" type="number" value="0" min="0" max="300">
+                <br>
+                <div class="text-right">
+                    <button id="poll-submit" class="btn btn-primary" style="margin-top: 2%">Pohrani</button>
+                </div>
+            </div>
         </div>
-        <button id="experience-submit" class="btn btn-primary">Pohrani</button>
-      </div>
     </div>
-  </div>
-</div>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-      integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-<link rel="stylesheet" href="/css/global.css">
-<link rel="stylesheet" href="/css/game.css">
 
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
-        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
-        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-        crossorigin="anonymous"></script>
-<script src="../js/game.js"></script>
-<script src="../js/user.js"></script>
-<script src="../js/poll.js"></script>
-<script src="../js/ux.js"></script>
+    <div id="experience-modal" class="modal fade" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Korisničko iskustvo</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <p>Sviđa li vam se više rješevanje ankete preko igranja igrice ili klasični način?</p>
+                        <p style="margin: 10px">Igra <input type="radio" name="tip" value="game" checked>
+                            Klasični način <input type="radio" name="tip" value="classic"></p>
+                    </div>
+                    <button id="experience-submit" class="btn btn-primary">Pohrani</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<script>
-  $(document).ready(function () {
-    $("#slider").on('input', function () {
-      var val = $(this).val();
-      $("#sliderNum").val(val);
-    });
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+          integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/game.css">
 
-    $("#sliderNum").on('input', function () {
-      var val = $(this).val();
-      $("#slider").val(val);
-    });
-  });
-</script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+            integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+            integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+            crossorigin="anonymous"></script>
+    <script src="../js/game.js"></script>
+    <script src="../js/user.js"></script>
+    <script src="../js/poll.js"></script>
+    <script src="../js/ux.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#slider").on('input', function () {
+                var val = $(this).val();
+                $("#sliderNum").val(val);
+            });
+
+            $("#sliderNum").on('input', function () {
+                var val = $(this).val();
+                $("#slider").val(val);
+            });
+        });
+    </script>
 </body>
 </html>
