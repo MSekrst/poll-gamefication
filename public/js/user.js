@@ -28,7 +28,7 @@ $('#user-submit').on('click touchstart', e => {
   user.income = parseInt($('#income').val(), 10);
   user.knowledge = $('#knowledge').val();
 
-  if (validateUser()) {
+  if (!validateUser()) {
     startGame();
 
     $.post('/user', user, userId => {
