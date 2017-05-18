@@ -131,10 +131,10 @@ for (let i = 0; i < 3; i++) {
   for(let j = 0; j <n; j++) {
     const space = new GameComponent({
       width: screenWidth/6,
-      height: sizeFactor * 5,
+      height: sizeFactor * 2.5,
       url: "../images/Untitled.png",
       x: x,
-      y: 50 + j*screenHeight/n,
+      y: 50 + j * screenHeight/n,
     });
     parkingSpaces.push(space);
 
