@@ -109,10 +109,21 @@ label {
   top: 25%;
 }
 
+@keyframes fill {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 #battery-remaining {
   background-color: yellow;
   height: 100%;
   border-radius: 10px;
+  animation: fill 3s ease-in-out;
 }
 
 #poll-content {

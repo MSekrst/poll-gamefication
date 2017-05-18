@@ -33,10 +33,6 @@ function newPoll() {
     const width = 375 / 100 * soc1;
 
     batteryRemaining.attr('style', `width: ${width}px`);
-    batteryRemaining.stop().animate({
-      width: '76.5px',
-      duration: '2s',
-    });
 }
 
 const dataSaved = () => {
