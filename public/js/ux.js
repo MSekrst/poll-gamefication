@@ -4,10 +4,10 @@ const collectUx = () => {
 
 $('#experience-submit').on('click touchstart', e => {
 
-  var tip = $('input[name=tip]:checked').val();
+  const tip = $('input[name=tip]:checked').val();
   $('#experience-modal').modal('hide');
 
-  var url = '/saveUx/' + id;
+  const url = '/save/ux/' + id;
   const experience = {tip};
   $.ajax({
     method: 'POST',

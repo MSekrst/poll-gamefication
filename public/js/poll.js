@@ -45,7 +45,7 @@ $('#poll-submit').click(e => {
     polls.push(poll);
 
     if (polls.length === 5) {
-      const url = '/savePolls/' + id;
+      const url = '/save/polls/' + id;
 
       $.ajax({
         method: 'POST',

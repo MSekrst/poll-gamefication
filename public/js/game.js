@@ -128,7 +128,6 @@ for (let i = 0; i < 3; i++) {
   } else {
     y = Math.floor((Math.random() * (n-1)));
   }
-
   for(let j = 0; j <n; j++) {
     const space = new GameComponent({
       width: screenWidth/6,
