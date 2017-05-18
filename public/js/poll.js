@@ -10,9 +10,7 @@ let soc1;
 let soc2;
 let cost;
 
-const pollDiv = $('#poll');
-const pollContent = $('#poll-content');
-
+const pollModal = $('#poll');
 const slider = $('#slider');
 
 function newPoll() {
@@ -29,8 +27,7 @@ function newPoll() {
     $('#soc2').html(soc2);
     $('#cost').html(cost);
 
-    pollDiv.slideDown(500);
-    pollContent.delay(500).fadeIn();
+    pollModal.modal('show');
 }
 
 const dataSaved = () => {
@@ -40,21 +37,23 @@ const dataSaved = () => {
 };
 
 $('#poll-submit').click(e => {
-    const wtp = 124;
+    const wtp = slider.val();
     const time = (new Date().getMilliseconds() - startTime) / 1000;
 
     const poll = {daytime, soc1, soc2, cost, wtp, time};
 
     polls.push(poll);
-    var url = '/savePolls/' + id;
+
     if (polls.length === 5) {
-        $.ajax({
-            method: 'POST',
-            url: url,
-            data: JSON.stringify({polls: polls}),
-            contentType: 'application/json',
-            success: dataSaved
-        });
+      const url = '/savePolls/' + id;
+
+      $.ajax({
+        method: 'POST',
+        url: url,
+        data: JSON.stringify({ polls: polls }),
+        contentType: 'application/json',
+        success: dataSaved
+      });
     }
 
     e.target.blur();
@@ -63,8 +62,10 @@ $('#poll-submit').click(e => {
     collectUx();
   }
 
-    pollContent.fadeOut();
-    pollDiv.delay(200).slideUp();
+  slider.val(0);
+  sliderValue.html('0');
+
+  pollModal.modal('hide');
 });
 
 const sliderValue = $('#slider-num b');

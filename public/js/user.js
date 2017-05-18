@@ -20,6 +20,8 @@ userModal.modal('show');
 
 const alert = $('#validation-alert');
 
+let id;
+
 $('#user-submit').on('click touchstart', e => {
   user.age = parseInt($('#age').val(), 10);
   user.status = $('#status').val();
@@ -29,7 +31,9 @@ $('#user-submit').on('click touchstart', e => {
   if (validateUser()) {
     startGame();
 
-    $.post('/user', user);
+    $.post('/user', user, userId => {
+      id = userId;
+    });
 
     userModal.modal('hide');
   } else {

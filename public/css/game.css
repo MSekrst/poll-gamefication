@@ -91,7 +91,6 @@ label {
 }
 
 #poll-content {
-    display: none;
     text-align: center;
     background-color: rgba(245, 245, 245, 0.6);
     width: 80%;
