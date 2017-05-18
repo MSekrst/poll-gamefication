@@ -12,7 +12,8 @@ let cost;
 
 const pollDiv = $('#poll');
 const pollContent = $('#poll-content');
-const background = $('#background');
+
+const slider = $('#slider');
 
 function newPoll() {
     startTime = new Date().getMilliseconds();
@@ -28,13 +29,12 @@ function newPoll() {
     $('#soc2').html(soc2);
     $('#cost').html(cost);
 
-    background.show();
-    pollDiv.slideDown(700);
+    pollDiv.slideDown(500);
     pollContent.delay(500).fadeIn();
 }
 
 const dataSaved = () => {
-    console.log('Data saved successfully')
+    console.log('Data saved successfully');
 
     collectUx();
 };
@@ -63,8 +63,15 @@ $('#poll-submit').click(e => {
     collectUx();
   }
 
-    background.hide();
     pollContent.fadeOut();
     pollDiv.delay(200).slideUp();
-
 });
+
+const sliderValue = $('#slider-num b');
+
+const handleSliderChange = e => {
+  sliderValue.html(e.target.value)
+};
+
+
+slider.on('input', handleSliderChange);
