@@ -46,12 +46,12 @@ $('#poll-submit').click(e => {
     const poll = {daytime, soc1, soc2, cost, wtp, time};
 
     polls.push(poll);
-
+    var url = '/savePolls/' + id;
     if (polls.length === 5) {
         $.ajax({
             method: 'POST',
-            url: '/save',
-            data: JSON.stringify({polls, user: {}, experience: {}}),
+            url: url,
+            data: JSON.stringify({polls: polls}),
             contentType: 'application/json',
             success: dataSaved
         });

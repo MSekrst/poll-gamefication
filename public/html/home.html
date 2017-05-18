@@ -6,7 +6,6 @@
   <title>Home</title>
   <link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
 </head>
-<body onkeydown="console.log(event); window.location.href = '/game'">
 <div class="full-cover"></div>
 
 <div class="card text-center custom-card">
@@ -31,5 +30,16 @@
         crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/css/global.css">
 <link rel="stylesheet" href="/css/home.css">
+<script>
+
+  document.addEventListener("keydown", keyDownTextField, false);
+
+  function keyDownTextField(e) {
+    var keyCode = e.keyCode;
+    if(keyCode==13) {
+      $('.btn').click();
+    }
+  }
+</script>
 </body>
 </html>

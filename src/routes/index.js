@@ -19,23 +19,45 @@ router.get('/finish', (req, res) => {
 });
 
 router.post('/user', (req, res) => {
+  const db = getDb();
   console.log(req.body);
+  const collection = { polls: {}, user: req.body, experience: {} };
 
-  // TODO save user
-
-  res.status(201).end();
+  db.collection('polls').insertOne(collection).then((data) => {
+    res.status(201).json(data.insertedId);
+  }).catch(err => {
+    res.status(500).json(err);
+  });
 });
 
-router.post('/save', (req, res) => {
+router.post('/savePolls/:id', (req, res) => {
   const db = getDb();
 
-  db.collection('polls').insertOne(req.body, (err) => {
-    if (err) {
-      return res.status(500).json(err);
-    }
-  });
+  const _id = ObjectID(req.params.id);
 
-  res.status(201).end();
+  db.collection('polls').findOneAndUpdate({_id},
+    {$push: {polls: req.body.polls }}, (err, data) => {
+      if (err) {
+        return res.status(500).json(err);
+      }
+      res.status(201).end();
+    });
+
+});
+
+router.post('/saveUx/:id', (req, res) => {
+  const db = getDb();
+
+  const _id = ObjectID(req.params.id);
+
+  db.collection('polls').findOneAndUpdate({_id},
+    {$push: {experience: req.body.experience}}, (err, data) => {
+      if (err) {
+        return res.status(500).json(err);
+      }
+      res.status(201).end();
+    });
+
 });
 
 export default router;
