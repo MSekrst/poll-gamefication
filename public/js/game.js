@@ -106,33 +106,50 @@ let parkingSpaces = [];
 
 const segmentSize = (screenWidth - 10 * sizeFactor) / 5;
 
-if(screenWidth > 900){
+const column = Math.floor((Math.random() * 2));
 
-  for (let i = 0; i < 3; i++) {
-    var n = Math.round((screenHeight- 50)/70);
-    for(let j = 0; j <n; j++) {
-      const space = new GameComponent({
-        width: screenWidth/6,
-        height: sizeFactor * 5,
-        url: "../images/Untitled.png",
-        x: screenWidth/3*i,
-        y: 50 + j*screenHeight/n,
+for (let i = 0; i < 3; i++) {
+  var n = Math.round((screenHeight- 50)/70);
+  var y,z;
+  var x = screenWidth/3*i;
+  if(i==1) {
+    x = screenWidth/6/2;
+    x = screenWidth/2 - x;
+  }
+  if(i==2) {
+    x = screenWidth - screenWidth/6;
+  }
+  if(column !=i) {
+    y = Math.floor((Math.random() * (n-1)));
+    z = Math.floor((Math.random() * (n-1)));
+    while(z == y) {
+      z = Math.floor((Math.random() * (n-1)));
+    }
+  } else {
+    y = Math.floor((Math.random() * (n-1)));
+  }
+
+  for(let j = 0; j <n; j++) {
+    const space = new GameComponent({
+      width: screenWidth/6,
+      height: sizeFactor * 5,
+      url: "../images/Untitled.png",
+      x: x,
+      y: 50 + j*screenHeight/n,
+    });
+    parkingSpaces.push(space);
+
+    if(j == y || (column != i && j == z)) {
+      const pickupPoint = new GameComponent({
+        width: Math.round(sizeFactor * 5),
+        height: Math.round(sizeFactor * 5),
+        url: "../images/bolt.png",
+        x: x + screenWidth/12 - Math.round(sizeFactor * 5)/2,
+        y: 50 + j*screenHeight/n +  sizeFactor * 5 + (screenHeight/n - sizeFactor * 5)/2- sizeFactor * 5/2,
       });
-      parkingSpaces.push(space);
+      pollPickups.push(pickupPoint);
     }
   }
-}
-for (let i = 0; i < 5; i++) {
-  const pickupPoint = new GameComponent({
-      width: Math.round(sizeFactor * 5),
-      height: Math.round(sizeFactor * 5),
-      url: "../images/bolt.png",
-      x: i === 0 ? Math.random() * (segmentSize - 10 * sizeFactor - 1) + 1 + 10 * sizeFactor : Math.random() * segmentSize + (i * segmentSize),
-      y: i === 0 ? Math.random() * (screenHeight - sizeFactor * 5) + 1  + 5 * sizeFactor : Math.random() * (screenHeight - 5 * sizeFactor),
-  });
-
-  pollPickups.push(pickupPoint);
-
 }
 
 let gameArea = new GameArea();
@@ -176,8 +193,27 @@ function updateGameArea() {
       car.update();
     }
     parkingSpaces.forEach(point => {
+      if (car.crashWith(point)) {
+        if(car.speedX == 1) {
+          car.x -= 2;
+          clearMove();
+        }
+        if(car.speedX == -1) {
+          car.x += 2;
+          clearMove();
+        }
+        if(car.speedY == 1) {
+          car.y -= 2;
+          clearMove();
+        }
+        if(car.speedY == -1) {
+          car.y += 2;
+          clearMove();
+        }
+      }
       point.update();
     })
+
   });
 
   pollPickups = remainingPickups;
