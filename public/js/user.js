@@ -1,7 +1,7 @@
 'use strict';
 
 const userModal = $('#user-modal');
-const user = { sex: '' };
+const user = {sex: ''};
 
 const handleSexChange = e => {
   user.sex = e.target.value;
@@ -43,3 +43,14 @@ $('#user-submit').on('click touchstart', e => {
 });
 
 $('div.sex-container div.sex-wrapper input').change(handleSexChange);
+
+$('.sex-image').on('click', e => {
+  if (e.target.alt === "Male") {
+    $('#male').prop('checked', true);
+    user.sex = "M";
+  }
+  if (e.target.alt === "Female") {
+    $('#female').prop('checked', true);
+    user.sex = "F";
+  }
+});
