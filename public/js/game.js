@@ -102,10 +102,26 @@ const car = new GameComponent({
 });
 
 let pollPickups = [];
+let parkingSpaces = [];
 
 const segmentSize = (screenWidth - 10 * sizeFactor) / 5;
 
-// generate pickup points
+if(screenWidth > 900){
+
+  for (let i = 0; i < 3; i++) {
+    var n = Math.round((screenHeight- 50)/70);
+    for(let j = 0; j <n; j++) {
+      const space = new GameComponent({
+        width: screenWidth/6,
+        height: sizeFactor * 5,
+        url: "../images/Untitled.png",
+        x: screenWidth/3*i,
+        y: 50 + j*screenHeight/n,
+      });
+      parkingSpaces.push(space);
+    }
+  }
+}
 for (let i = 0; i < 5; i++) {
   const pickupPoint = new GameComponent({
       width: Math.round(sizeFactor * 5),
@@ -159,6 +175,9 @@ function updateGameArea() {
 
       car.update();
     }
+    parkingSpaces.forEach(point => {
+      point.update();
+    })
   });
 
   pollPickups = remainingPickups;
@@ -206,8 +225,6 @@ function clearMove() {
   downBtn.removeClass('btn-success');
 }
 
-// Event assigns
-// TODO remove handlers when modal is shown
 doc.keydown(e => {
   const code = e.keyCode ? e.keyCode : e.which;
 
