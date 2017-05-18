@@ -106,7 +106,7 @@ let parkingSpaces = [];
 
 const segmentSize = (screenWidth - 10 * sizeFactor) / 5;
 
-if(screenWidth > 900){
+if (screenWidth > 900 ) {
 
   for (let i = 0; i < 3; i++) {
     var n = Math.round((screenHeight- 50)/70);
@@ -114,7 +114,7 @@ if(screenWidth > 900){
       const space = new GameComponent({
         width: screenWidth/6,
         height: sizeFactor * 5,
-        url: "../images/Untitled.png",
+        url: "../images/bolt.png",
         x: screenWidth/3*i,
         y: 50 + j*screenHeight/n,
       });
@@ -122,6 +122,7 @@ if(screenWidth > 900){
     }
   }
 }
+
 for (let i = 0; i < 5; i++) {
   const pickupPoint = new GameComponent({
       width: Math.round(sizeFactor * 5),
