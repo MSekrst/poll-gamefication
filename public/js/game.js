@@ -134,7 +134,7 @@ for (let i = 0; i < 3; i++) {
       const pickupPoint = new GameComponent({
         width: Math.round(sizeFactor * 5),
         height: Math.round(sizeFactor * 5),
-        url: "../images/bolt.png",
+        url: "../images/munja.png",
         x: x + screenWidth/12 - Math.round(sizeFactor * 2-5)/2,
         y: 50 + j*screenHeight/n +  sizeFactor * 5 + (screenHeight/n - sizeFactor * 2.5)/2- sizeFactor * 5/2,
       });
