@@ -93,14 +93,6 @@ class GameArea {
   }
 }
 
-const car = new GameComponent({
-  width: sizeFactor * 10,
-  height: sizeFactor * 5,
-  url: "../images/carBlue.png",
-  x: 0,
-  y: 0,
-});
-
 let pollPickups = [];
 let parkingSpaces = [];
 
@@ -152,8 +144,17 @@ for (let i = 0; i < 3; i++) {
 }
 
 let gameArea = new GameArea();
+let car;
 
 const startGame = () => {
+  car = new GameComponent({
+    width: sizeFactor * 10,
+    height: sizeFactor * 5,
+    url: "../images/car" + user.sex + ".png",
+    x: 0,
+    y: 0,
+  });
+
   gameArea.start();
 };
 

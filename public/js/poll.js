@@ -28,11 +28,30 @@ function newPoll() {
     $('#soc2').html(soc2);
     $('#cost').html(cost);
 
+    $('#cover').css({'background-image': 'url(../images/carDay' + user.sex + '.png)'});
+
+    $('#poll-submit').attr('disabled','disabled');
+
     pollModal.modal('show');
 
-    const width = 375 / 100 * soc1;
+    $('#first').delay(200).fadeIn();
 
-    batteryRemaining.attr('style', `width: ${width}px`);
+    $('#cover').delay(800).animate({opacity: 0.8}, 500, function () {
+        $('#cover').css({'background-image': 'url(../images/carNight' + user.sex + '.png)'}).animate({opacity: 1}, 100);
+        $('#second').delay(500).fadeIn();
+        $('#third').delay(2000).fadeIn();
+
+        $('#battery').delay(2000).fadeIn(500);
+        const width = 375 / 100 * soc1;
+
+        batteryRemaining.attr('style', `width: ${width}px`);
+
+        $('#fourth').delay(4500).fadeIn();
+
+        $('#fifth').delay(6000).fadeIn();
+
+        $('#sixth').delay(7500).fadeIn();
+    });
 }
 
 const dataSaved = () => {
@@ -50,33 +69,41 @@ $('#poll-submit').click(e => {
     polls.push(poll);
 
     if (polls.length === 5) {
-      const url = '/save/polls/' + id;
+        const url = '/save/polls/' + id;
 
-      $.ajax({
-        method: 'POST',
-        url: url,
-        data: JSON.stringify({ polls: polls }),
-        contentType: 'application/json',
-        success: dataSaved
-      });
+        $.ajax({
+            method: 'POST',
+            url: url,
+            data: JSON.stringify({polls: polls}),
+            contentType: 'application/json',
+            success: dataSaved
+        });
     }
 
     e.target.blur();
 
-  if (polls.length === 5) {
-    collectUx();
-  }
+    if (polls.length === 5) {
+        collectUx();
+    }
 
-  slider.val(0);
-  sliderValue.html('0');
+    slider.val(0);
+    sliderValue.html('0');
 
-  pollModal.modal('hide');
+    $('#first').hide();
+    $('#second').hide();
+    $('#third').hide();
+    $('#battery').hide();
+    $('#fourth').hide();
+    $('#fifth').hide();
+    $('#sixth').hide();
+    pollModal.modal('hide');
 });
 
 const sliderValue = $('#slider-num b');
 
 const handleSliderChange = e => {
-  sliderValue.html(e.target.value)
+    sliderValue.html(e.target.value);
+    $('#poll-submit').removeAttr('disabled');
 };
 
 

@@ -85,8 +85,7 @@ label {
     margin: 30px auto 0 auto;
 }
 
-.cover {
-    background: url(../images/carDayMen.png);
+#cover {
     height: 100%;
 }
 
@@ -135,6 +134,9 @@ label {
     border-radius: 5px;
 }
 
+#first, #second, #third, #fourth, #fifth, #sixth, #battery {
+    display: none;
+}
 .slider-container {
   width: 100%;
   padding: 15px;

@@ -79,20 +79,21 @@
 
 <div id="poll" class="modal" data-keyboard="false" data-backdrop="static">
   <div class="modal-content" id="poll-modal">
-    <div class="cover">
+    <div id="cover">
       <div id="poll-content">
-        <p>Došli ste u <span id="daytime">7:00</span> na parkiralište.
-          <br>
-          Na parkiralištu planirate ostati <strong>1 puni sat</strong>.
-          <br>
-          Trenutačno stanje Vaše baterije je <span id="soc1">76</span><strong>%</strong>.
-          <br>
-          Pri odlasku s parkirališta status baterije bio bi Vam <span
+        <p id="first">Došli ste u <span id="daytime">7:00</span> na parkiralište.
+          <br></p>
+          <p id="second">Na parkiralištu planirate ostati <strong>1 puni sat</strong>.
+          <br></p>
+          <p id="third">Trenutačno stanje Vaše baterije je <span id="soc1">76</span><strong>%</strong>.
+          <br></p>
+          <p id="fourth">Pri odlasku s parkirališta status baterije bio bi Vam <span
             id="soc2">76</span><strong>%</strong>.
-          <br>
-          U slučaju punjenja kod kuće trošak bi bio : <span id="cost">76</span><strong> novčanih
+          <br></p>
+          <p id="fifth">U slučaju punjenja kod kuće trošak bi bio : <span id="cost">76</span><strong> novčanih
             jedinica</strong>
-          <br>
+          <br></p>
+          <div id="sixth">
           <div class="question">Koliko ste spremni platiti za uslugu punjenja električnog vozila?</div>
         </p>
         <div class="slider-container">
@@ -103,7 +104,7 @@
           <button id="poll-submit" class="btn btn-primary">Pohrani</button>
         </div>
       </div>
-    </div>
+      </div>
     <div id="battery">
       <div id="battery-tip"></div>
       <div id="battery-remaining"></div>
@@ -145,8 +146,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
         integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
         crossorigin="anonymous"></script>
-<script src="../js/game.js"></script>
 <script src="../js/user.js"></script>
+<script src="../js/game.js"></script>
 <script src="../js/poll.js"></script>
 <script src="../js/ux.js"></script>
 </body>

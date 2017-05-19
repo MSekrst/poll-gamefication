@@ -1,7 +1,7 @@
 'use strict';
 
 const userModal = $('#user-modal');
-const user = {sex: ''};
+var user = {sex: 'M'};
 
 const handleSexChange = e => {
   user.sex = e.target.value;
