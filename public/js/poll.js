@@ -14,6 +14,7 @@ const pollModal = $('#poll');
 const slider = $('#slider');
 const batteryRemaining = $('#battery-remaining');
 
+let image;
 function newPoll() {
     startTime = new Date().getMilliseconds();
 
@@ -23,12 +24,25 @@ function newPoll() {
     soc2 = Math.floor((Math.random() * (100 - soc1)) + soc1);
     cost = Math.floor((Math.random() * 100));
 
+    if (daytime == '7:00') {
+        image = 'carMorning';
+    }
+    if (daytime == '12:00') {
+        image = 'carDay';
+    }
+    if (daytime == '17:00') {
+        image = 'carAfternoon';
+    }
+    if (daytime == '21:00' || daytime == '3:00') {
+        image = 'carNight';
+    }
+
     $('#daytime').html(daytime);
     $('#soc1').html(soc1);
     $('#soc2').html(soc2);
     $('#cost').html(cost);
 
-    $('#cover').css({'background-image': 'url(../images/carDay' + user.sex + '.png)'});
+    $('#cover').css({'background-image': 'url(../images/carDefault' + user.sex + '.png)'});
 
     $('#poll-submit').attr('disabled','disabled');
 
@@ -37,7 +51,7 @@ function newPoll() {
     $('#first').delay(200).fadeIn();
 
     $('#cover').delay(800).animate({opacity: 0.8}, 500, function () {
-        $('#cover').css({'background-image': 'url(../images/carNight' + user.sex + '.png)'}).animate({opacity: 1}, 100);
+        $('#cover').css({'background-image': 'url(../images/'+ image + user.sex + '.png)'}).animate({opacity: 1}, 100);
         $('#second').delay(500).fadeIn();
         $('#third').delay(2000).fadeIn();
 
@@ -46,7 +60,7 @@ function newPoll() {
 
         batteryRemaining.attr('style', `width: ${width}px`);
 
-        $('#fourth').delay(4500).fadeIn();
+        $('#fourth').delay(4000).fadeIn();
 
         $('#fifth').delay(6000).fadeIn();
 
