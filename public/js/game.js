@@ -98,45 +98,68 @@ let parkingSpaces = [];
 
 const segmentSize = (screenWidth - 10 * sizeFactor) / 5;
 
-const column = Math.floor((Math.random() * 2));
+const columnWithTwo = Math.floor((Math.random() * 2));
+const numberOfSpaces = Math.round((screenHeight- 50)/(sizeFactor * 5 + 2* sizeFactor * 3 + 10));
+
+// trava uz rubove
+var grass = new GameComponent({
+  width: sizeFactor * 3,
+  height: screenHeight - sizeFactor * 5 + 10,
+  url: "../images/grass.png",
+  x: 0,
+  y: sizeFactor * 5 + 10,
+});
+parkingSpaces.push(grass);
+
+grass = new GameComponent({
+  width: sizeFactor * 3,
+  height: screenHeight - sizeFactor * 5 + 10,
+  url: "../images/grass.png",
+  x: screenWidth-sizeFactor*3,
+  y: sizeFactor * 5 + 10,
+});
+parkingSpaces.push(grass);
 
 for (let i = 0; i < 3; i++) {
-  var n = Math.round((screenHeight- 50)/70);
-  var y,z;
-  var x = screenWidth/3*i;
+  var choosenSpace1,choosenSpace2;
+
+  var columnStart = grass.width;
   if(i==1) {
-    x = screenWidth/6/2;
-    x = screenWidth/2 - x;
+    columnStart = screenWidth/6/2;
+    columnStart = screenWidth/2 - columnStart;
   }
   if(i==2) {
-    x = screenWidth - screenWidth/6;
+    columnStart = screenWidth - screenWidth/6 - grass.width;
   }
-  if(column !=i) {
-    y = Math.floor((Math.random() * (n-1)));
-    z = Math.floor((Math.random() * (n-1)));
-    while(z == y) {
-      z = Math.floor((Math.random() * (n-1)));
+
+  //random generira parkirno mjesto za trenutni stupac
+  if(columnWithTwo ==i) {
+    choosenSpace1 = Math.floor((Math.random() * (numberOfSpaces-1)));
+    choosenSpace2 = Math.floor((Math.random() * (numberOfSpaces-1)));
+    while(choosenSpace2 == choosenSpace1) {
+      choosenSpace2 = Math.floor((Math.random() * (numberOfSpaces-1)));
     }
   } else {
-    y = Math.floor((Math.random() * (n-1)));
+    choosenSpace1 = Math.floor((Math.random() * (numberOfSpaces-1)));
   }
-  for(let j = 0; j <n; j++) {
+
+  for(let j = 0; j <numberOfSpaces; j++) {
     const space = new GameComponent({
       width: screenWidth/6,
-      height: sizeFactor * 2.5,
+      height: sizeFactor * 3,
       url: "../images/Untitled.png",
-      x: x,
-      y: 50 + j * screenHeight/n,
+      x: columnStart,
+      y: sizeFactor * 5 + 10 + j * screenHeight/numberOfSpaces,
     });
     parkingSpaces.push(space);
 
-    if(j == y || (column != i && j == z)) {
+    if(j == choosenSpace1 || (columnWithTwo == i && j == choosenSpace2)) {
       const pickupPoint = new GameComponent({
         width: Math.round(sizeFactor * 5),
         height: Math.round(sizeFactor * 5),
         url: "../images/munja.png",
-        x: x + screenWidth/12 - Math.round(sizeFactor * 2-5)/2,
-        y: 50 + j*screenHeight/n +  sizeFactor * 5 + (screenHeight/n - sizeFactor * 2.5)/2- sizeFactor * 5/2,
+        x: columnStart + screenWidth/12 - Math.round(sizeFactor * 5)/2,
+        y: space.y  + space.height + (screenHeight/numberOfSpaces - space.height)/2- Math.round(sizeFactor * 5)/2,
       });
       pollPickups.push(pickupPoint);
     }

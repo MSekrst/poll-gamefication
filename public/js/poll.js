@@ -1,8 +1,8 @@
 'use strict';
 
 const polls = [];
-const times = ['7:00', '12:00', '17:00', '21:00', '3:00'];
-const start = Math.floor((Math.random() * 5) + 1);
+const times = ['ujutro', 'popodne', 'predvečer', 'po noći'];
+const start = Math.floor((Math.random() * 4) + 1);
 
 let startTime;
 let daytime;
@@ -18,22 +18,22 @@ let image;
 function newPoll() {
     startTime = new Date().getMilliseconds();
 
-    const n = (5 - start + polls.length) % 5 + 1;
+    const n = (4 - start + polls.length) % 4 + 1;
     daytime = times[polls.length];
-    soc1 = Math.floor((Math.random() * 20) + 20 * (n - 1));
+    soc1 = Math.floor((Math.random() * 25) + 25 * (n - 1));
     soc2 = Math.floor((Math.random() * (100 - soc1)) + soc1);
     cost = Math.floor((Math.random() * 100));
 
-    if (daytime == '7:00') {
+    if (daytime == times[0]) {
         image = 'carMorning';
     }
-    if (daytime == '12:00') {
+    if (daytime == times[1]) {
         image = 'carDay';
     }
-    if (daytime == '17:00') {
+    if (daytime == times[2]) {
         image = 'carAfternoon';
     }
-    if (daytime == '21:00' || daytime == '3:00') {
+    if (daytime == times[3]) {
         image = 'carNight';
     }
 
@@ -82,7 +82,7 @@ $('#poll-submit').click(e => {
 
     polls.push(poll);
 
-    if (polls.length === 5) {
+    if (polls.length === 4) {
         const url = '/save/polls/' + id;
 
         $.ajax({
@@ -96,11 +96,10 @@ $('#poll-submit').click(e => {
 
     e.target.blur();
 
-    if (polls.length === 5) {
-        collectUx();
+    if (polls.length === 4) {
+      collectUx();
     }
-
-    slider.val(0);
+   slider.val(0);
     sliderValue.html('0');
 
     $('#first').hide();
@@ -111,6 +110,7 @@ $('#poll-submit').click(e => {
     $('#fifth').hide();
     $('#sixth').hide();
     pollModal.modal('hide');
+
 });
 
 const sliderValue = $('#slider-num b');
