@@ -16,7 +16,7 @@ const batteryRemaining = $('#battery-remaining');
 
 let image;
 function newPoll() {
-    startTime = new Date().getMilliseconds();
+    startTime = new Date();
 
     const n = (4 - start + polls.length) % 4 + 1;
     daytime = times[polls.length];
@@ -76,19 +76,21 @@ const dataSaved = () => {
 
 $('#poll-submit').click(e => {
     const wtp = slider.val();
-    const time = (new Date().getMilliseconds() - startTime) / 1000;
-
+    const time = (new Date() - startTime)/1000  ;
+    timeGame -= time;
     const poll = {daytime, soc1, soc2, cost, wtp, time};
 
     polls.push(poll);
 
     if (polls.length === 4) {
+        timeGame -=  new Date()/1000;
+        console.log(timeGame);
         const url = '/save/polls/' + id;
 
         $.ajax({
             method: 'POST',
             url: url,
-            data: JSON.stringify({polls: polls}),
+            data: JSON.stringify({polls: polls, timeInGame: timeGame}),
             contentType: 'application/json',
             success: dataSaved
         });

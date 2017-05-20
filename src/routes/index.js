@@ -37,9 +37,9 @@ router.post('/save/polls/:id', (req, res) => {
   const db = getDb();
 
   const _id = ObjectID(req.params.id);
-
+console.log("tu");
   db.collection('polls').findOneAndUpdate({ _id },
-    { $push: { polls: req.body.polls } }, err => {
+    { $push: { polls: req.body.polls, timeInGame: req.body.timeInGame} }, err => {
       if (err) {
         return res.status(500).json(err);
       }

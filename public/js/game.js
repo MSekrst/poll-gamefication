@@ -93,6 +93,7 @@ class GameArea {
   }
 }
 
+let timeGame =  new Date()/ 1000
 let pollPickups = [];
 let parkingSpaces = [];
 
@@ -294,7 +295,7 @@ doc.keydown(e => {
     return clearMove();
   }
 
-  if($('#poll').is(':visible')) {
+  if($('#poll').is(':visible') &&  !$('#poll-submit').is(':disabled')) {
     if(code == 13){
       $('#poll-submit').click();
     }
