@@ -119,10 +119,10 @@ label {
 }
 
 #battery-remaining {
-  background-color: yellow;
+  width: 0;
+  background-color : yellow;
   height: 100%;
   border-radius: 10px;
-  animation: fill 3s ease-in-out;
 }
 
 #poll-content {
