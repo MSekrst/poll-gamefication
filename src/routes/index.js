@@ -37,9 +37,9 @@ router.post('/save/polls/:id', (req, res) => {
   const db = getDb();
 
   const _id = ObjectID(req.params.id);
-console.log("tu");
+console.log(req.body.polls);
   db.collection('polls').findOneAndUpdate({ _id },
-    { $push: { polls: req.body.polls, timeInGame: req.body.timeInGame} }, err => {
+    { $push: { polls: req.body.polls[0], timeInGame: req.body.timeInGame} }, err => {
       if (err) {
         return res.status(500).json(err);
       }
@@ -54,7 +54,7 @@ router.post('/save/ux/:id', (req, res) => {
   const _id = ObjectID(req.params.id);
 
   db.collection('polls').findOneAndUpdate({ _id },
-    { experience: req.body.experience }, err => {
+    { $push: { experience: req.body.experience } }, err => {
       if (err) {
         return res.status(500).json(err);
       }

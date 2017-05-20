@@ -81,15 +81,17 @@ const dataSaved = () => {
 
 $('#poll-submit').click(e => {
     const wtp = slider.val();
-    const time = (new Date() - startTime)/1000  ;
+    let time = (new Date() - startTime)/1000;
     timeGame -= time;
+    time = time %60;
+    console.log(timeGame);
     const poll = {daytime, soc1, soc2, cost, wtp, time};
 
     polls.push(poll);
 
     if (polls.length === 4) {
-        timeGame -=  new Date()/1000;
-        console.log(timeGame);
+        timeGame =  new Date()/1000 - timeGame;
+        console.log(timeGame % 60);
         const url = '/save/polls/' + id;
 
         $.ajax({

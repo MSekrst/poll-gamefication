@@ -21,14 +21,14 @@ userModal.modal('show');
 const alert = $('#validation-alert');
 
 let id;
-
+let timeGame = 0;
 $('#user-submit').on('click touchstart', e => {
   user.age = parseInt($('#age').val(), 10);
   user.status = $('#status').val();
   user.income = parseInt($('#income').val(), 10);
   user.knowledge = $('#knowledge').val();
 
-  if (!validateUser()) {
+  if (validateUser()) {
     startGame();
 
     $.post('/user', user, userId => {
@@ -36,6 +36,8 @@ $('#user-submit').on('click touchstart', e => {
     });
 
     userModal.modal('hide');
+    timeGame =  new Date()/ 1000;
+    console.log(timeGame);
   } else {
     alert.attr('style', 'display: block');
     e.target.blur();

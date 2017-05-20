@@ -93,7 +93,6 @@ class GameArea {
   }
 }
 
-let timeGame =  new Date()/ 1000
 let pollPickups = [];
 let parkingSpaces = [];
 
@@ -288,13 +287,6 @@ function clearMove() {
 doc.keydown(e => {
   const code = e.keyCode ? e.keyCode : e.which;
 
-  if($('#user-modal').is(':visible')){
-    if(code == 13){
-      $('#user-submit').click();
-    }
-    return clearMove();
-  }
-
   if($('#poll').is(':visible') &&  !$('#poll-submit').is(':disabled')) {
     if(code == 13){
       $('#poll-submit').click();
@@ -308,13 +300,19 @@ doc.keydown(e => {
     }
     return clearMove();
   }
-
-  switch (code) {
-    case 38: return moveUp();
-    case 40: return moveDown();
-    case 37: return moveLeft();
-    case 39: return moveRight();
-    default: return clearMove();
+  if(!$('#poll').is(':visible')) {
+    switch (code) {
+      case 38:
+        return moveUp();
+      case 40:
+        return moveDown();
+      case 37:
+        return moveLeft();
+      case 39:
+        return moveRight();
+      default:
+        return clearMove();
+    }
   }
 });
 
