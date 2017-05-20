@@ -1,49 +1,49 @@
 canvas {
-    border: 1px solid #00001E;
-    background-color: #696662;
+  border: 1px solid #00001E;
+  background-color: #696662;
 }
 
 span {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .game-buttons-container {
-    width: 100%;
-    text-align: center;
+  width: 100%;
+  text-align: center;
 }
 
 .game-button {
-    margin: 5px;
-    font-weight: 900;
+  margin: 5px;
+  font-weight: 900;
 }
 
 #move-right {
-    margin-left: 45px;
+  margin-left: 45px;
 }
 
 .sex-wrapper {
-    display: inline-block;
-    text-align: center;
-    width: 49%;
-    padding-bottom: 10px;
+  display: inline-block;
+  text-align: center;
+  width: 49%;
+  padding-bottom: 10px;
 }
 
 .sex-image {
-    width: 30%;
-    margin-right: 10px;
+  width: 30%;
+  margin-right: 10px;
 }
 
 label {
-    font-weight: 700;
-    margin-right: 10px;
+  font-weight: 700;
+  margin-right: 10px;
 }
 
 .input-wrapper {
-    padding-top: 10px;
+  padding-top: 10px;
 }
 
 .user-input {
-    width: 100%;
+  width: 100%;
 }
 
 .styled-select {
@@ -53,7 +53,7 @@ label {
   background-image: url(../images/selector.png);
   background-position: 98% center;
   background-repeat: no-repeat;
-  border: 1px solid rgba(0,0,0,.15);
+  border: 1px solid rgba(0, 0, 0, .15);
   color: #757575;
   padding: 2px;
   width: 100%;
@@ -63,7 +63,7 @@ label {
 
 .input-group-addon {
   border-radius: 0;
-  border: 1px solid rgba(0,0,0,.15);
+  border: 1px solid rgba(0, 0, 0, .15);
   border-left: 0;
   background-color: white;
   color: #757575;
@@ -71,7 +71,7 @@ label {
 }
 
 .right {
-    float: right;
+  float: right;
 }
 
 #validation-alert {
@@ -79,14 +79,14 @@ label {
 }
 
 #poll-modal {
-    height: 100%;
-    max-height: 600px;
-    max-width: 800px;
-    margin: 30px auto 0 auto;
+  height: 100%;
+  max-height: 600px;
+  max-width: 800px;
+  margin: 30px auto 0 auto;
 }
 
 #cover {
-    height: 100%;
+  height: 100%;
 }
 
 #battery {
@@ -113,30 +113,31 @@ label {
     opacity: 0;
   }
 
-  to {
+  to  {
     opacity: 1;
   }
 }
 
 #battery-remaining {
   width: 0;
-  background-color : yellow;
+  background-color: yellow;
   height: 100%;
   border-radius: 10px;
 }
 
 #poll-content {
-    text-align: center;
-    background-color: rgba(245, 245, 245, 0.6);
-    width: 80%;
-    margin: 40px auto 0 auto;
-    padding: 10px;
-    border-radius: 5px;
+  text-align: center;
+  background-color: rgba(245, 245, 245, 0.6);
+  width: 80%;
+  margin: 40px auto 0 auto;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 #first, #second, #third, #fourth, #fifth, #sixth, #battery {
-    display: none;
+  display: none;
 }
+
 .slider-container {
   width: 100%;
   padding: 15px;
@@ -163,9 +164,11 @@ input[type=range] {
   margin: 10px 0;
   width: 100%;
 }
+
 input[type=range]:focus {
   outline: none;
 }
+
 input[type=range]::-webkit-slider-runnable-track {
   width: 100%;
   height: 11px;
@@ -176,6 +179,7 @@ input[type=range]::-webkit-slider-runnable-track {
   border-radius: 1px;
   border: 0px solid #010101;
 }
+
 input[type=range]::-webkit-slider-thumb {
   box-shadow: 1px 1px 1px #000031;
   border: 1px solid #00001E;
@@ -187,9 +191,11 @@ input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
   margin-top: -8px;
 }
+
 input[type=range]:focus::-webkit-slider-runnable-track {
   background: #74A9D8;
 }
+
 input[type=range]::-moz-range-track {
   width: 100%;
   height: 11px;
@@ -200,6 +206,7 @@ input[type=range]::-moz-range-track {
   border-radius: 1px;
   border: 0px solid #010101;
 }
+
 input[type=range]::-moz-range-thumb {
   box-shadow: 1px 1px 1px #000031;
   border: 1px solid #00001E;
@@ -209,6 +216,7 @@ input[type=range]::-moz-range-thumb {
   background: #FFFFFF;
   cursor: pointer;
 }
+
 input[type=range]::-ms-track {
   width: 100%;
   height: 11px;
@@ -218,18 +226,21 @@ input[type=range]::-ms-track {
   border-color: transparent;
   color: transparent;
 }
+
 input[type=range]::-ms-fill-lower {
   background: #74A9D8;
   border: 0px solid #010101;
   border-radius: 2px;
   box-shadow: 1px 1px 1px #000000;
 }
+
 input[type=range]::-ms-fill-upper {
   background: #74A9D8;
   border: 0px solid #010101;
   border-radius: 2px;
   box-shadow: 1px 1px 1px #000000;
 }
+
 input[type=range]::-ms-thumb {
   box-shadow: 1px 1px 1px #000031;
   border: 1px solid #00001E;
@@ -239,9 +250,47 @@ input[type=range]::-ms-thumb {
   background: #FFFFFF;
   cursor: pointer;
 }
+
 input[type=range]:focus::-ms-fill-lower {
   background: #74A9D8;
 }
+
 input[type=range]:focus::-ms-fill-upper {
   background: #74A9D8;
+}
+
+.ux-answer {
+  margin-left: 40px;
+}
+
+.ux-answers {
+  position: absolute;
+  right: 40px;
+  max-width: 40%;
+}
+
+.ux-question {
+  max-width: 60%;
+}
+
+#experience-modal-content {
+  width: 100%;
+  max-width: 1000px;
+  margin: 30px auto 0 auto;
+}
+
+.experience div{
+  display: inline-block;
+}
+
+#agree{
+  position: absolute;
+  right: 10px;
+  font-size: 12px;
+}
+
+#disagree{
+  position: absolute;
+  right: 280px;
+  font-size: 12px;
 }
