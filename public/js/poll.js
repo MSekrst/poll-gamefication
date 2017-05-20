@@ -43,28 +43,33 @@ function newPoll() {
     $('#cost').html(cost);
 
     $('#cover').css({'background-image': 'url(../images/carDefault' + user.sex + '.png)'});
-
-    $('#poll-submit').attr('disabled','disabled');
+    $('#poll-submit').attr('disabled', 'disabled');
+    batteryRemaining.css('background-color', 'yellow');
+    batteryRemaining.css('width', '0');
 
     pollModal.modal('show');
 
     $('#first').delay(200).fadeIn();
 
     $('#cover').delay(800).animate({opacity: 0.8}, 500, function () {
-        $('#cover').css({'background-image': 'url(../images/'+ image + user.sex + '.png)'}).animate({opacity: 1}, 100);
+        $('#cover').css({'background-image': 'url(../images/' + image + user.sex + '.png)'}).animate({opacity: 1}, 100);
         $('#second').delay(500).fadeIn();
         $('#third').delay(2000).fadeIn();
 
         $('#battery').delay(2000).fadeIn(500);
         const width = 375 / 100 * soc1;
 
-        batteryRemaining.attr('style', `width: ${width}px`);
+        batteryRemaining.delay(2500).animate({width: width + 'px'});
 
         $('#fourth').delay(4000).fadeIn();
+        const width2 = 375 / 100 * soc2;
+        batteryRemaining.delay(1000).animate({width: width2 + 'px', 'background-color' : 'green'}, function () {
+             batteryRemaining.css('background-color', 'green');
+        });
 
-        $('#fifth').delay(6000).fadeIn();
 
-        $('#sixth').delay(7500).fadeIn();
+        $('#fifth').delay(5500).fadeIn();
+        $('#sixth').delay(7000).fadeIn();
     });
 }
 
@@ -96,10 +101,7 @@ $('#poll-submit').click(e => {
 
     e.target.blur();
 
-    if (polls.length === 4) {
-      collectUx();
-    }
-   slider.val(0);
+    slider.val(0);
     sliderValue.html('0');
 
     $('#first').hide();
