@@ -4,16 +4,25 @@ const collectUx = () => {
 
 const dataSaved2 = () => {
   console.log('Data saved successfully');
+  window.location.href = "/finish";
 };
 
 $('#experience-submit').on('click touchstart', e => {
 
   const tip = $('input[name=tip]:checked').val();
+
+  const experience = [];
+
+  for(var i = 1; i<= 15; i++) {
+      let object = {
+        question:  $('#question' + i).text(),
+        answer: $('input[name=question'+ i+']:checked').val()
+      }
+      experience.push(object);
+  }
   $('#experience-modal').modal('hide');
 
   const url = '/save/ux/' + id;
-  const experience = {tip};
-
   console.log(experience);
   $.ajax({
     method: 'POST',
@@ -23,6 +32,6 @@ $('#experience-submit').on('click touchstart', e => {
     success: dataSaved2()
   });
 
-  window.location.href = "/finish";
+
 });
 
