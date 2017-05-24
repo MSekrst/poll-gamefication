@@ -53,7 +53,7 @@ $('#user-submit').on('click touchstart', e => {
     });
 
     userModal.modal('hide');
-    timeGame =  new Date()/ 1000;
+    timeGame =  (new Date()).getTime();
   } else {
     alert.attr('style', 'display: block');
     e.target.blur();
