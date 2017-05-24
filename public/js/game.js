@@ -75,11 +75,11 @@ class GameArea {
 
     $('#game-container').html(this.canvas);
 
-    this.interval = setInterval(updateGameArea, 20);
+    this.interval = setInterval(updateGameArea, 30);
   }
 
   restart() {
-    this.interval = setInterval(updateGameArea, 5 * pollPickups.length);
+    this.interval = setInterval(updateGameArea, 8 * pollPickups.length);
   }
 
   clear() {
@@ -192,6 +192,8 @@ function updateGameArea() {
 
       car.x += car.speedX;
       car.y += car.speedY;
+
+      clearMove();
 
     } else {
       point.update();

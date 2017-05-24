@@ -1,5 +1,13 @@
 'use strict';
 
+let capable = true;
+
+if (screenHeight < 445 || screenWidth < 798) {
+  capable = false;
+}
+
+console.log(screenWidth, screenHeight, capable);
+
 const polls = [];
 const times = ['ujutro', 'popodne', 'predvečer', 'po noći'];
 const start = Math.floor((Math.random() * 4) + 1);
@@ -55,8 +63,6 @@ function newPoll() {
 
   coverElement.css({'background-image': 'url(../images/carDefault' + user.sex + '.png)'});
   pollSubmnitElement.attr('disabled', 'disabled');
-  batteryRemaining.css('background-color', 'yellow');
-  batteryRemaining.css('width', '0');
 
   pollModal.modal('show');
 
@@ -64,28 +70,39 @@ function newPoll() {
 
   // weird way to make async
   setTimeout(() => {
-    coverElement.css({'background-image': 'url(../images/' + image + user.sex + '.png)'}).animate({opacity: 1}, 300);
+    coverElement.css({ 'background-image': 'url(../images/' + image + user.sex + '.png)' }).animate({ opacity: 1 }, 300);
     secondElement.delay(500).fadeIn();
     thirdElement.delay(1100).fadeIn();
 
-    batteryElement.delay(1100).fadeIn(800);
-    const width = 3.75 * soc1;
+    if (capable) {
+      batteryElement.delay(1100).fadeIn(800);
 
-    batteryRemaining.css('background-color',  soc1 < 33.5 ? '#f44336' : (soc1 > 66.5 ? '#4caf50' : '#ffeb3b'));
-    batteryTextElement.html(`${soc1}%`);
+      batteryRemaining.css('background-color', soc1 < 33.5 ? '#f44336' : (soc1 > 66.5 ? '#4caf50' : '#ffeb3b'));
+      batteryTextElement.html(`${soc1}%`);
 
-    batteryRemaining.delay(2100).animate({width: width + 'px'}, 800);
+      batteryElement.delay(1100).fadeIn(800);
+      const width = 3.75 * soc1;
 
-    fourthlement.delay(3100).fadeIn(() => {
-      batteryTextElement.html(`${soc1}%&nbsp;&rarr;&nbsp;${soc2}%`);
-    });
-    const width2 = 3.75 * soc2;
-    batteryRemaining.delay(1000).animate({width: width2 + 'px' }, 800,  () => {
-      batteryRemaining.css('background-color', soc2 < 33.5 ? '#f44336' : (soc2 > 66.5 ? '#4caf50' : '#ffeb3b'));
-    });
+      batteryRemaining.delay(2100).animate({ width: width + 'px' }, 800);
 
-    fifthElement.delay(5100).fadeIn();
-    sixthElement.delay(5700).fadeIn(800);
+      fourthlement.delay(3100).fadeIn(() => {
+        batteryTextElement.html(`${soc1}%&nbsp;&rarr;&nbsp;${soc2}%`);
+      });
+
+      const width2 = 3.75 * soc2;
+
+      batteryRemaining.delay(1000).animate({ width: width2 + 'px' }, 800, () => {
+        batteryRemaining.css('background-color', soc2 < 33.5 ? '#f44336' : (soc2 > 66.5 ? '#4caf50' : '#ffeb3b'));
+      });
+
+      fifthElement.delay(5100).fadeIn();
+      sixthElement.delay(5700).fadeIn(800);
+    } else {
+      fifthElement.delay(1700).fadeIn();
+      sixthElement.delay(2300).fadeIn(800);
+    }
+
+
   }, 800);
 }
 
