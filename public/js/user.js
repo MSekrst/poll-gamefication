@@ -45,14 +45,18 @@ $('#user-submit').on('click touchstart', e => {
   user.income = parseInt($('#income').val(), 10);
   user.knowledge = $('#knowledge').val();
 
-  if (!validateUser()) {
-    startGame();
+  if (validateUser()) {
 
+
+    userModal.modal('hide');
+
+    console.log('sending', user);
     $.post('/user', user, userId => {
       id = userId;
     });
 
-    userModal.modal('hide');
+    startGame();
+
     timeGame =  new Date()/ 1000;
   } else {
     alert.attr('style', 'display: block');

@@ -30,7 +30,12 @@ class GameComponent {
   update() {
     const ctx = gameArea.context;
 
-    ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+    if (this.image) {
+      ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+    } else {
+      ctx.fillStyle = this.color;
+      ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
   }
 
   crashWith(obstacle) {
@@ -78,7 +83,6 @@ class GameArea {
   }
 
   clear() {
-    console.log(car.width, car.height);
     this.context.clearRect(0, 0, screenWidth, screenHeight);
   }
 
@@ -103,7 +107,7 @@ let grass = new GameComponent({
 });
 parkingSpaces.push(grass);
 
-new GameComponent({
+grass = new GameComponent({
   width: sizeFactor * 3,
   height: screenHeight - sizeFactor * 5 + 10,
   url: '../images/grass.png',
@@ -140,7 +144,7 @@ for (let i = 0; i < 3; i++) {
     const space = new GameComponent({
       width: screenWidth / 6,
       height: sizeFactor * 3,
-      url: '../images/line.png',
+      color: 'white',
       x: columnStart,
       y: sizeFactor * 5 + 10 + j * screenHeight / numberOfSpaces,
     });
