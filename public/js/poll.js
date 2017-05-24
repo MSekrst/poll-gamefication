@@ -27,7 +27,7 @@ const batteryElement = $('#battery');
 const batteryTextElement = $('#battery-text');
 
 function newPoll() {
-  startTime = new Date();
+  startTime = (new Date()).getTime();
 
   const n = (4 - start + polls.length) % 4 + 1;
   daytime = times[polls.length];
@@ -95,15 +95,16 @@ const dataSaved = () => {
 
 pollSubmnitElement.click(e => {
   const wtp = slider.val();
-  let time = (new Date() - startTime) / 1000;
-  timeGame -= time;
-  time = time % 60;
+  let time = (new Date()).getTime() - startTime;
+  timeGame += time;
+  time = time /1000;
   const poll = { daytime, soc1, soc2, cost, wtp, time };
 
   polls.push(poll);
 
   if (polls.length === 4) {
-    timeGame = new Date() / 1000 - timeGame;
+    timeGame = (new Date()).getTime() - timeGame;
+    timeGame = timeGame/1000;
     const url = '/save/polls/' + id;
 
     $.ajax({

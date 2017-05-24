@@ -46,18 +46,14 @@ $('#user-submit').on('click touchstart', e => {
   user.knowledge = $('#knowledge').val();
 
   if (validateUser()) {
-
-
-    userModal.modal('hide');
-
-    console.log('sending', user);
     $.post('/user', user, userId => {
       id = userId;
     });
 
-    startGame();
+    userModal.modal('hide');
 
-    timeGame =  new Date()/ 1000;
+    startGame();
+    timeGame =  (new Date()).getTime();
   } else {
     alert.attr('style', 'display: block');
     e.target.blur();
