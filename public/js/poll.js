@@ -104,7 +104,6 @@ function newPoll() {
       sixthElement.delay(2900).fadeIn(800);
     }
 
-
   }, 800);
 }
 
@@ -125,6 +124,8 @@ pollSubmnitElement.click(e => {
     timeGame = (new Date()).getTime() - timeGame;
     timeGame = timeGame/1000;
     const url = '/save/polls/' + id;
+
+    console.log(timeGame);
 
     $.ajax({
       method: 'POST',

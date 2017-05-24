@@ -16,7 +16,7 @@ router.get('/game', (req, res) => {
 });
 
 router.get('/finish', (req, res) => {
-  res.sendFile(resolve('public/html/end.html'));
+  res.sendFile(resolve('public/html/finish.html'));
 });
 
 // api routes
@@ -37,7 +37,7 @@ router.post('/save/polls/:id', (req, res) => {
 
   const _id = ObjectID(req.params.id);
   db.collection('polls').findOneAndUpdate({ _id },
-    { $push: { polls: req.body.polls[0], timeInGame: req.body.timeInGame} }, err => {
+    { $set: { timeInGame: req.body.timeInGame }, $push: { polls: req.body.polls[0] } }, err => {
       if (err) {
         return res.status(500).json(err);
       }
@@ -47,9 +47,6 @@ router.post('/save/polls/:id', (req, res) => {
 });
 
 router.post('/save/ux/:id', (req, res) => {
-  console.log(req.body);
-  console.log(req.params.id);
-
   const db = getDb();
 
   const _id = ObjectID(req.params.id);
@@ -61,7 +58,19 @@ router.post('/save/ux/:id', (req, res) => {
       }
       res.status(201).end();
     });
+});
 
+router.get('/results', (req, res) => {
+  const db = getDb();
+
+  db.collection('polls').find({}).sort({ timeInGame: 1 }).limit(10).toArray((err, data) => {
+    if (err) {
+      res.status(500).json(err);
+      return;
+    }
+
+    return res.status(200).json(data);
+  });
 });
 
 export default router;
