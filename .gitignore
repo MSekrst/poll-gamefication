@@ -17,3 +17,6 @@ database
 
 # log files
 *.log*
+
+# to-do list
+TODO.txt

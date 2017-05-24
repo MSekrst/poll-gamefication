@@ -31,7 +31,7 @@ class GameComponent {
     const ctx = gameArea.context;
 
     if (this.image) { // if element is car
-      // TODO - check Safari & Opera support
+      // TODO.txt - check Safari & Opera support
       ctx.mozImageSmoothingEnabled = true;
       ctx.webkitImageSmoothingEnabled = true;
       ctx.msImageSmoothingEnabled = true;

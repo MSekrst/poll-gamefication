@@ -23,6 +23,6 @@ app.use(express.static('public'));
 app.use(router);
 
 app.listen(port, () => {
-  console.log(`Server is running at ${host}:${port}`);
+  console.log(`Server is running at: ${host}:${port}`);
 });
 
