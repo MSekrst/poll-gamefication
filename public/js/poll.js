@@ -10,121 +10,131 @@ let soc1;
 let soc2;
 let cost;
 
+let image;
+
 const pollModal = $('#poll');
 const slider = $('#slider');
 const batteryRemaining = $('#battery-remaining');
+const coverElement = $('#cover');
+const pollSubmnitElement = $('#poll-submit');
+const firstElement = $('#first');
+const secondElement = $('#second');
+const thirdElement = $('#third');
+const fourthlement = $('#fourth');
+const fifthElement = $('#fifth');
+const sixthElement = $('#sixth');
+const batteryElement = $('#battery');
+const batteryTextElement = $('#battery-text');
 
-let image;
 function newPoll() {
-    startTime = new Date();
+  startTime = new Date();
 
-    const n = (4 - start + polls.length) % 4 + 1;
-    daytime = times[polls.length];
-    soc1 = Math.floor((Math.random() * 25) + 25 * (n - 1));
-    soc2 = Math.floor((Math.random() * (100 - soc1)) + soc1);
-    cost = Math.floor((Math.random() * 100));
+  const n = (4 - start + polls.length) % 4 + 1;
+  daytime = times[polls.length];
+  soc1 = Math.floor((Math.random() * 25) + 25 * (n - 1));
+  soc2 = Math.floor((Math.random() * (100 - soc1)) + soc1);
+  cost = Math.floor((Math.random() * 100));
 
-    if (daytime == times[0]) {
-        image = 'carMorning';
-    }
-    if (daytime == times[1]) {
-        image = 'carDay';
-    }
-    if (daytime == times[2]) {
-        image = 'carAfternoon';
-    }
-    if (daytime == times[3]) {
-        image = 'carNight';
-    }
+  if (daytime === times[0]) {
+    image = 'carMorning';
+  }
+  if (daytime === times[1]) {
+    image = 'carDay';
+  }
+  if (daytime === times[2]) {
+    image = 'carAfternoon';
+  }
+  if (daytime === times[3]) {
+    image = 'carNight';
+  }
 
-    $('#daytime').html(daytime);
-    $('#soc1').html(soc1);
-    $('#soc2').html(soc2);
-    $('#cost').html(cost);
+  $('#daytime').html(daytime);
+  $('#soc1').html(soc1);
+  $('#soc2').html(soc2);
+  $('#cost').html(cost);
 
-    $('#cover').css({'background-image': 'url(../images/carDefault' + user.sex + '.png)'});
-    $('#poll-submit').attr('disabled', 'disabled');
-    batteryRemaining.css('background-color', 'yellow');
-    batteryRemaining.css('width', '0');
+  coverElement.css({'background-image': 'url(../images/carDefault' + user.sex + '.png)'});
+  pollSubmnitElement.attr('disabled', 'disabled');
+  batteryRemaining.css('background-color', 'yellow');
+  batteryRemaining.css('width', '0');
 
-    pollModal.modal('show');
+  pollModal.modal('show');
 
-    $('#first').delay(200).fadeIn();
+  firstElement.delay(200).fadeIn();
 
-    $('#cover').delay(800).animate({opacity: 0.8}, 500, function () {
-        $('#cover').css({'background-image': 'url(../images/' + image + user.sex + '.png)'}).animate({opacity: 1}, 100);
-        $('#second').delay(500).fadeIn();
-        $('#third').delay(2000).fadeIn();
+  // weird way to make async
+  setTimeout(() => {
+    coverElement.css({'background-image': 'url(../images/' + image + user.sex + '.png)'}).animate({opacity: 1}, 300);
+    secondElement.delay(500).fadeIn();
+    thirdElement.delay(1100).fadeIn();
 
-        $('#battery').delay(2000).fadeIn(500);
-        const width = 375 / 100 * soc1;
+    batteryElement.delay(1100).fadeIn(800);
+    const width = 3.75 * soc1;
 
-        batteryRemaining.delay(2500).animate({width: width + 'px'});
+    batteryRemaining.css('background-color',  soc1 < 33.5 ? '#f44336' : (soc1 > 66.5 ? '#4caf50' : '#ffeb3b'));
+    batteryTextElement.html(`${soc1}%`);
 
-        $('#fourth').delay(4000).fadeIn();
-        const width2 = 375 / 100 * soc2;
-        batteryRemaining.delay(1000).animate({width: width2 + 'px', 'background-color' : 'green'}, function () {
-             batteryRemaining.css('background-color', 'green');
-        });
+    batteryRemaining.delay(2100).animate({width: width + 'px'}, 800);
 
-
-        $('#fifth').delay(5500).fadeIn();
-        $('#sixth').delay(7000).fadeIn();
+    fourthlement.delay(3100).fadeIn();
+    const width2 = 3.75 * soc2;
+    batteryRemaining.delay(1000).animate({width: width2 + 'px' }, 800,  () => {
+      batteryTextElement.html(`${soc1}%&nbsp;&rarr;&nbsp;${soc2}%`);
+      batteryRemaining.css('background-color', soc2 < 33.5 ? '#f44336' : (soc2 > 66.5 ? '#4caf50' : '#ffeb3b'));
     });
+
+    fifthElement.delay(5100).fadeIn();
+    sixthElement.delay(5700).fadeIn(800);
+  }, 800);
 }
 
 const dataSaved = () => {
-    console.log('Data saved successfully');
-
-    collectUx();
+  collectUx();
 };
 
-$('#poll-submit').click(e => {
-    const wtp = slider.val();
-    let time = (new Date() - startTime)/1000;
-    timeGame -= time;
-    time = time %60;
-    console.log(timeGame);
-    const poll = {daytime, soc1, soc2, cost, wtp, time};
+pollSubmnitElement.click(e => {
+  const wtp = slider.val();
+  let time = (new Date() - startTime) / 1000;
+  timeGame -= time;
+  time = time % 60;
+  const poll = { daytime, soc1, soc2, cost, wtp, time };
 
-    polls.push(poll);
+  polls.push(poll);
 
-    if (polls.length === 4) {
-        timeGame =  new Date()/1000 - timeGame;
-        console.log(timeGame % 60);
-        const url = '/save/polls/' + id;
+  if (polls.length === 4) {
+    timeGame = new Date() / 1000 - timeGame;
+    const url = '/save/polls/' + id;
 
-        $.ajax({
-            method: 'POST',
-            url: url,
-            data: JSON.stringify({polls: polls, timeInGame: timeGame}),
-            contentType: 'application/json',
-            success: dataSaved
-        });
-    }
+    $.ajax({
+      method: 'POST',
+      url: url,
+      data: JSON.stringify({ polls: polls, timeInGame: timeGame }),
+      contentType: 'application/json',
+      success: dataSaved
+    });
+  }
 
-    e.target.blur();
+  e.target.blur();
 
-    slider.val(0);
-    sliderValue.html('0');
+  slider.val(0);
+  sliderValue.html('0');
 
-    $('#first').hide();
-    $('#second').hide();
-    $('#third').hide();
-    $('#battery').hide();
-    $('#fourth').hide();
-    $('#fifth').hide();
-    $('#sixth').hide();
-    pollModal.modal('hide');
+  firstElement.hide();
+  secondElement.hide();
+  thirdElement.hide();
+  batteryElement.hide();
+  fourthlement.hide();
+  fifthElement.hide();
+  sixthElement.hide();
+  pollModal.modal('hide');
 
 });
 
 const sliderValue = $('#slider-num b');
 
 const handleSliderChange = e => {
-    sliderValue.html(e.target.value);
-    $('#poll-submit').removeAttr('disabled');
+  sliderValue.html(e.target.value);
+  pollSubmnitElement.removeAttr('disabled');
 };
-
 
 slider.on('input', handleSliderChange);

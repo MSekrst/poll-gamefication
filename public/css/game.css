@@ -108,21 +108,20 @@ label {
   top: 25%;
 }
 
-@keyframes fill {
-  from {
-    opacity: 0;
-  }
-
-  to  {
-    opacity: 1;
-  }
-}
-
 #battery-remaining {
   width: 0;
-  background-color: yellow;
   height: 100%;
   border-radius: 10px;
+}
+
+#battery-text {
+  width: 100%;
+  position: absolute;
+  bottom: 40px;
+  text-align: center;
+  background-color: transparent;
+  font-weight: bold;
+  font-size: larger;
 }
 
 #poll-content {
