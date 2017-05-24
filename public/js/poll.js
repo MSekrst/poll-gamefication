@@ -40,7 +40,7 @@ function newPoll() {
   const n = (4 - start + polls.length) % 4 + 1;
   daytime = times[polls.length];
   soc1 = Math.floor((Math.random() * 25) + 25 * (n - 1));
-  soc2 = Math.floor((Math.random() * (100 - soc1)) + soc1);
+  soc2 = Math.floor((Math.random() * (100 - soc1 - 1)) + soc1 + 1);
   cost = Math.floor((Math.random() * 100));
 
   if (daytime === times[0]) {
@@ -63,6 +63,7 @@ function newPoll() {
 
   coverElement.css({'background-image': 'url(../images/carDefault' + user.sex + '.png)'});
   pollSubmnitElement.attr('disabled', 'disabled');
+  batteryRemaining.css('width', '0');
 
   pollModal.modal('show');
 
@@ -98,8 +99,9 @@ function newPoll() {
       fifthElement.delay(5100).fadeIn();
       sixthElement.delay(5700).fadeIn(800);
     } else {
-      fifthElement.delay(1700).fadeIn();
-      sixthElement.delay(2300).fadeIn(800);
+      fourthlement.delay(1700).fadeIn();
+      fifthElement.delay(2300).fadeIn();
+      sixthElement.delay(2900).fadeIn(800);
     }
 
 

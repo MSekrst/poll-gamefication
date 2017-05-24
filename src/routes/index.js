@@ -23,8 +23,7 @@ router.get('/finish', (req, res) => {
 
 router.post('/user', (req, res) => {
   const db = getDb();
-  console.log(req.body);
-  const collection = { polls: [], user: req.body, experience: {} };
+  const collection = { polls: [], user: req.body, experience: [] };
 
   db.collection('polls').insertOne(collection).then((data) => {
     res.status(200).json(data.insertedId);
@@ -37,7 +36,6 @@ router.post('/save/polls/:id', (req, res) => {
   const db = getDb();
 
   const _id = ObjectID(req.params.id);
-console.log(req.body.polls);
   db.collection('polls').findOneAndUpdate({ _id },
     { $push: { polls: req.body.polls[0], timeInGame: req.body.timeInGame} }, err => {
       if (err) {
@@ -49,6 +47,9 @@ console.log(req.body.polls);
 });
 
 router.post('/save/ux/:id', (req, res) => {
+  console.log(req.body);
+  console.log(req.params.id);
+
   const db = getDb();
 
   const _id = ObjectID(req.params.id);
