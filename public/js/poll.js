@@ -76,10 +76,11 @@ function newPoll() {
 
     batteryRemaining.delay(2100).animate({width: width + 'px'}, 800);
 
-    fourthlement.delay(3100).fadeIn();
+    fourthlement.delay(3100).fadeIn(() => {
+      batteryTextElement.html(`${soc1}%&nbsp;&rarr;&nbsp;${soc2}%`);
+    });
     const width2 = 3.75 * soc2;
     batteryRemaining.delay(1000).animate({width: width2 + 'px' }, 800,  () => {
-      batteryTextElement.html(`${soc1}%&nbsp;&rarr;&nbsp;${soc2}%`);
       batteryRemaining.css('background-color', soc2 < 33.5 ? '#f44336' : (soc2 > 66.5 ? '#4caf50' : '#ffeb3b'));
     });
 
@@ -128,6 +129,8 @@ pollSubmnitElement.click(e => {
   sixthElement.hide();
   pollModal.modal('hide');
 
+  // set sampling interval
+  gameArea.restart();
 });
 
 const sliderValue = $('#slider-num b');

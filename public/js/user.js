@@ -1,10 +1,27 @@
 'use strict';
 
 const userModal = $('#user-modal');
-var user = {sex: 'M'};
+const selectElements = $('select.styled-select');
 
-const handleSexChange = e => {
-  user.sex = e.target.value;
+const user = { sex: 'F' };
+
+const handleSexChange = (e, sex) => {
+  if (e) {
+    user.sex = e.target.value;
+  } else {
+    user.sex = sex.substr(0, 1);
+    $(`#${sex.toLowerCase()}`).prop('checked', true);
+  }
+
+  $('#user-submit').removeAttr('disabled');
+};
+
+const handleSelectChange = e => {
+  if (e.target.value !== '') {
+    e.target.style = 'color:black';
+  } else {
+    e.target.style = '';
+  }
 };
 
 const validateUser = () => {
@@ -37,7 +54,6 @@ $('#user-submit').on('click touchstart', e => {
 
     userModal.modal('hide');
     timeGame =  new Date()/ 1000;
-    console.log(timeGame);
   } else {
     alert.attr('style', 'display: block');
     e.target.blur();
@@ -47,12 +63,7 @@ $('#user-submit').on('click touchstart', e => {
 $('div.sex-container div.sex-wrapper input').change(handleSexChange);
 
 $('.sex-image').on('click', e => {
-  if (e.target.alt === "Male") {
-    $('#male').prop('checked', true);
-    user.sex = "M";
-  }
-  if (e.target.alt === "Female") {
-    $('#female').prop('checked', true);
-    user.sex = "F";
-  }
+  handleSexChange(null, e.target.alt);
 });
+
+selectElements.change(handleSelectChange);

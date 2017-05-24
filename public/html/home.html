@@ -10,9 +10,11 @@
 
 <div class="card text-center custom-card">
   <div class="card-block">
-    <h1 class="card-title">Dobrodošli u XYZ</h1>
-    <p class="card-text">Lorem Ipsum je jednostavno probni tekst koji se koristi u tiskarskoj i slovoslagarskoj
-      industriji.</p>
+    <h1 class="card-title">Anketa o električnim vozilima</h1>
+    <p class="card-text">Svrha ove ankete je prikupljanje Vaših odgovora u navedenim situacijama.
+      Anketi se pristupa kroz igru, sakupljanjem munja. Cilj igre je što brže sakupiti sve munje na parkiralištu.
+      Pri računanju rezultata u obzir se uzima <b>samo vrijeme provedeno u igri</b>,
+      tako da anketu možete ispunjavati koliko Vam odgovara. Molimo Vas da odgovorite iskreno i sretno u igri.</p>
     <a href="/game" style="float: right"><button class="btn btn-primary">Počni</button></a>
   </div>
 </div>
@@ -36,7 +38,7 @@
 
   function keyDownTextField(e) {
     var keyCode = e.keyCode;
-    if(keyCode==13) {
+    if(keyCode === 13) {
       $('.btn').click();
     }
   }

@@ -19,8 +19,8 @@ class GameComponent {
       this.color = options.color;
     }
 
-    this.width = options.width;
-    this.height = options.height;
+    this.width = (options.width + 0.5) | 0;
+    this.height = (options.height + 0.5) | 0;
     this.speedX = 0;
     this.speedY = 0;
     this.x = options.x;
@@ -30,18 +30,7 @@ class GameComponent {
   update() {
     const ctx = gameArea.context;
 
-    if (this.image) { // if element is car
-      // TODO.txt - check Safari & Opera support
-      ctx.mozImageSmoothingEnabled = true;
-      ctx.webkitImageSmoothingEnabled = true;
-      ctx.msImageSmoothingEnabled = true;
-      ctx.imageSmoothingEnabled = true;
-
-      ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
-    } else { // element is obstacle
-      ctx.fillStyle = this.color;
-      ctx.fillRect(this.x, this.y, this.width, this.height);
-    }
+    ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
   }
 
   crashWith(obstacle) {
@@ -84,8 +73,13 @@ class GameArea {
     this.interval = setInterval(updateGameArea, 20);
   }
 
+  restart() {
+    this.interval = setInterval(updateGameArea, 5 * pollPickups.length);
+  }
+
   clear() {
-    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    console.log(car.width, car.height);
+    this.context.clearRect(0, 0, screenWidth, screenHeight);
   }
 
   stop() {
@@ -95,8 +89,6 @@ class GameArea {
 
 let pollPickups = [];
 let parkingSpaces = [];
-
-const segmentSize = (screenWidth - 10 * sizeFactor) / 5;
 
 const columnWithTwo = Math.floor((Math.random() * 2));
 const numberOfSpaces = Math.round((screenHeight - 50) / (sizeFactor * 5 + 2 * sizeFactor * 3 + 10));
@@ -111,14 +103,13 @@ let grass = new GameComponent({
 });
 parkingSpaces.push(grass);
 
-grass = new GameComponent({
+new GameComponent({
   width: sizeFactor * 3,
   height: screenHeight - sizeFactor * 5 + 10,
   url: '../images/grass.png',
   x: screenWidth - sizeFactor * 3,
   y: sizeFactor * 5 + 10,
 });
-
 parkingSpaces.push(grass);
 
 for (let i = 0; i < 3; i++) {
@@ -168,7 +159,8 @@ for (let i = 0; i < 3; i++) {
   }
 }
 
-let gameArea = new GameArea();
+// must be global
+var gameArea = new GameArea();
 let car;
 
 const startGame = () => {
@@ -190,17 +182,13 @@ function updateGameArea() {
 
   pollPickups.forEach(point => {
     if (car.crashWith(point)) {
+      gameArea.stop();
+
       newPoll();
 
       car.x += car.speedX;
       car.y += car.speedY;
 
-      // without this with each pickup game gets slower
-      if (pollPickups.length > 1) {
-        gameArea.interval = setInterval(updateGameArea, 6 * pollPickups.length);
-      }
-
-      car.update();
     } else {
       point.update();
 
@@ -224,35 +212,36 @@ function updateGameArea() {
       if (car.y > screenHeight - car.height) {
         car.y = screenHeight - car.height;
       }
-
-      car.update();
     }
-    parkingSpaces.forEach(point => {
+
+    parkingSpaces.forEach(space => {
       if (!car) {
         return;
       }
 
-      if (car.crashWith(point)) {
+      if (car.crashWith(space)) {
         if (car.speedX === 1) {
-          car.x -= 2;
+          car.x -= 1;
           clearMove();
         }
         if (car.speedX === -1) {
-          car.x += 2;
+          car.x += 1;
           clearMove();
         }
         if (car.speedY === 1) {
-          car.y -= 2;
+          car.y -= 1;
           clearMove();
         }
         if (car.speedY === -1) {
-          car.y += 2;
+          car.y += 1;
           clearMove();
         }
       }
-      point.update();
+
+      space.update();
     });
 
+    car.update();
   });
 
   pollPickups = remainingPickups;
@@ -326,10 +315,8 @@ const pollSubmitElement = $('#poll-submit');
 doc.keydown(e => {
   const code = e.keyCode ? e.keyCode : e.which;
 
-  console.log(code);
-
   if (code === 13) {
-    if ($('#user-modal').is(':visible')) {
+    if ($('#user-modal').is(':visible') && !$('#user-submit').is(':disabled')) {
       $('#user-submit').click();
     } else {
       if (pollElement.is(':visible') && !pollSubmitElement.is(':disabled')) {
@@ -377,3 +364,15 @@ rightBtn.on('mousedown touchstart', moveRight);
 rightBtn.mouseup(clearMove);
 downBtn.on('mousedown touchstart', moveDown);
 downBtn.mouseup(clearMove);
+
+const helpModal = $('#help-modal');
+
+const showHelp = e => {
+  helpModal.modal('show');
+};
+
+$('#help-button').on('click touch', showHelp);
+
+$('#help-submit').on('click touch', () => {
+  helpModal.modal('hide');
+});
