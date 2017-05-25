@@ -23,7 +23,7 @@ router.get('/finish', (req, res) => {
 
 router.post('/user', (req, res) => {
   const db = getDb();
-  const collection = { polls: [], user: req.body, experience: [] };
+  const collection = { polls: [], user: req.body, experience: [], timeInGame: -1 };
 
   db.collection('polls').insertOne(collection).then((data) => {
     res.status(200).json(data.insertedId);
@@ -63,7 +63,7 @@ router.post('/save/ux/:id', (req, res) => {
 router.get('/results', (req, res) => {
   const db = getDb();
 
-  db.collection('polls').find({}).sort({ timeInGame: 1 }).limit(10).toArray((err, data) => {
+  db.collection('polls').find({timeInGame : { $gt: 0}}).sort({ timeInGame: 1 }).limit(10).toArray((err, data) => {
     if (err) {
       res.status(500).json(err);
       return;
