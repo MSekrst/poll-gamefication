@@ -6,8 +6,6 @@ if (screenHeight < 445 || screenWidth < 798) {
   capable = false;
 }
 
-console.log(screenWidth, screenHeight, capable);
-
 const polls = [];
 const times = ['ujutro', 'popodne', 'predvečer', 'po noći'];
 const start = Math.floor((Math.random() * 4) + 1);
@@ -108,7 +106,8 @@ function newPoll() {
 }
 
 const dataSaved = () => {
-  collectUx();
+  console.log(id);
+  window.location.href = `https://abozic.limequery.com/636614?userID=${id}`;
 };
 
 pollSubmnitElement.click(e => {

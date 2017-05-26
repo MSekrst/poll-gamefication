@@ -19,6 +19,54 @@ router.get('/finish', (req, res) => {
   res.sendFile(resolve('public/html/finish.html'));
 });
 
+router.get('/game/:id', (req, res) => {
+  const db = getDb();
+
+  let oid;
+
+  try {
+    oid = ObjectID(req.params.id) || null;
+  } catch (err) {
+    return res.redirect('/game');
+  }
+
+  db.collection('polls').find({ _id: oid }).toArray((err, data) => {
+    if (err) {
+      return res.status(500).end();
+    }
+
+    if (data[0]) {
+      return res.sendFile(resolve('public/html/game.html'));
+    } else {
+      return res.redirect('/');
+    }
+  });
+});
+
+router.get('/finish/:id', (req, res) => {
+  const db = getDb();
+
+  let oid;
+
+  try {
+    oid = ObjectID(req.params.id) || null;
+  } catch (err) {
+    return res.redirect('/game');
+  }
+
+  db.collection('polls').find({ _id: oid }).toArray((err, data) => {
+    if (err) {
+      return res.status(500).end();
+    }
+
+    if (data[0]) {
+      return res.sendFile(resolve('public/html/finish.html'));
+    } else {
+      return res.redirect('/');
+    }
+  });
+});
+
 // api routes
 
 router.post('/user', (req, res) => {
