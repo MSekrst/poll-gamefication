@@ -1,7 +1,11 @@
 'use strict';
 
+let id;
+let timeGame = 0;
+
 const userModal = $('#user-modal');
 const selectElements = $('select.styled-select');
+const alert = $('#validation-alert');
 
 const user = { sex: 'F' };
 
@@ -33,12 +37,15 @@ const validateUser = () => {
   return user.knowledge !== '';
 };
 
-userModal.modal('show');
+if (window.location.pathname.includes('/game/')) {
+  id = window.location.pathname.substr(6);
 
-const alert = $('#validation-alert');
+  startGame();
+  timeGame =  (new Date()).getTime();
+} else {
+  userModal.modal('show');
+}
 
-let id;
-let timeGame = 0;
 $('#user-submit').on('click touchstart', e => {
   user.age = parseInt($('#age').val(), 10);
   user.status = $('#status').val();
@@ -48,12 +55,16 @@ $('#user-submit').on('click touchstart', e => {
   if (validateUser()) {
     $.post('/user', user, userId => {
       id = userId;
+
+      if (Math.random() > 0.5) {
+        window.location.href = `https://abozic.limequery.com/636614?userID=${id}&BQ=0`;
+      } else {
+        userModal.modal('hide');
+
+        startGame();
+        timeGame =  (new Date()).getTime();
+      }
     });
-
-    userModal.modal('hide');
-
-    startGame();
-    timeGame =  (new Date()).getTime();
   } else {
     alert.attr('style', 'display: block');
     e.target.blur();

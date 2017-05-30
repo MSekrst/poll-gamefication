@@ -19,11 +19,59 @@ router.get('/finish', (req, res) => {
   res.sendFile(resolve('public/html/finish.html'));
 });
 
+router.get('/game/:id', (req, res) => {
+  const db = getDb();
+
+  let oid;
+
+  try {
+    oid = ObjectID(req.params.id) || null;
+  } catch (err) {
+    return res.redirect('/game');
+  }
+
+  db.collection('polls').find({ _id: oid }).toArray((err, data) => {
+    if (err) {
+      return res.status(500).end();
+    }
+
+    if (data[0]) {
+      return res.sendFile(resolve('public/html/game.html'));
+    } else {
+      return res.redirect('/');
+    }
+  });
+});
+
+router.get('/finish/:id', (req, res) => {
+  const db = getDb();
+
+  let oid;
+
+  try {
+    oid = ObjectID(req.params.id) || null;
+  } catch (err) {
+    return res.redirect('/game');
+  }
+
+  db.collection('polls').find({ _id: oid }).toArray((err, data) => {
+    if (err) {
+      return res.status(500).end();
+    }
+
+    if (data[0]) {
+      return res.sendFile(resolve('public/html/finish.html'));
+    } else {
+      return res.redirect('/');
+    }
+  });
+});
+
 // api routes
 
 router.post('/user', (req, res) => {
   const db = getDb();
-  const collection = { polls: [], user: req.body, experience: [] };
+  const collection = { polls: [], user: req.body, experience: [], timeInGame: -1 };
 
   db.collection('polls').insertOne(collection).then((data) => {
     res.status(200).json(data.insertedId);
@@ -63,7 +111,7 @@ router.post('/save/ux/:id', (req, res) => {
 router.get('/results', (req, res) => {
   const db = getDb();
 
-  db.collection('polls').find({}).sort({ timeInGame: 1 }).limit(10).toArray((err, data) => {
+  db.collection('polls').find({timeInGame : { $gt: 0}}).sort({ timeInGame: 1 }).limit(10).toArray((err, data) => {
     if (err) {
       res.status(500).json(err);
       return;

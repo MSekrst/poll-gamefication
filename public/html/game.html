@@ -12,20 +12,6 @@
         crossorigin="anonymous">
   <link rel="stylesheet" href="/css/global.css">
   <link rel="stylesheet" href="/css/game.css">
-
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"
-          integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-          crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
-          integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
-          crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
-          integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-          crossorigin="anonymous"></script>
-  <script src="../js/user.js"></script>
-  <script src="../js/game.js"></script>
-  <script src="../js/ux.js"></script>
-  <script src="../js/poll.js"></script>
 </head>
 <body>
 <div id="game-container"></div>
@@ -139,207 +125,43 @@
   <div class="modal-content" id="experience-modal-content">
     <div class="modal-header">
       <h5 class="modal-title">Korisničko iskustvo</h5>
-          </div>
+    </div>
     <div class="modal-body" style="overflow-y: auto">
-      <div id="disagree"><span>Uopće se ne slažem</span></div>
-      <div id="agree"><span>U potpunosti se slažem</span></div>
+      <div class="form-group experience">
+        <div class="ux-question-left">
+          <p id="question1">Naporno
+        </div>
+        <div class="ux-answers">
+          <input class="ux-answer" type="radio" name="question1" value="1">
+          <input class="ux-answer" type="radio" name="question1" value="2">
+          <input class="ux-answer" type="radio" name="question1" value="3">
+          <input class="ux-answer" type="radio" name="question1" value="4">
+          <input class="ux-answer" type="radio" name="question1" value="5">
+          <input class="ux-answer" type="radio" name="question1" value="6">
+          <input class="ux-answer" type="radio" name="question1" value="7">
+        </div>
+        <div class="ux-question-right">
+          <p>Zabavno
+        </div>
+      </div>
+      <div class="form-group experience">
+        <div class="ux-question-left">
+          <p id="question2">Nerazumljivo
+        </div>
+        <div class="ux-answers">
+          <input class="ux-answer" type="radio" name="question2" value="1">
+          <input class="ux-answer" type="radio" name="question2" value="2">
+          <input class="ux-answer" type="radio" name="question2" value="3">
+          <input class="ux-answer" type="radio" name="question2" value="4">
+          <input class="ux-answer" type="radio" name="question2" value="5">
+          <input class="ux-answer" type="radio" name="question2" value="6">
+          <input class="ux-answer" type="radio" name="question2" value="7">
+        </div>
+        <div class="ux-question-right">
+          <p>Razumljivo
+        </div>
+      </div>
       <br>
-      <div class="form-group experience">
-        <div class="ux-question" >
-          <p id="question1">Svidjela mi se igra korištena u anketi.
-        </div>
-        <div class="ux-answers">
-          <input class="ux-answer" type="radio" name="question1" value="1"> 1
-          <input class="ux-answer" type="radio" name="question1" value="2"> 2
-          <input class="ux-answer" type="radio" name="question1" value="3"> 3
-          <input class="ux-answer" type="radio" name="question1" value="4"> 4
-          <input class="ux-answer" checked="checked" type="radio" name="question1" value="5"> 5
-        </div>
-      </div>
-
-      <div class="form-group experience">
-        <div class="ux-question" >
-          <p id="question2">Igra je bila jasna i intuitivna za korištenje.
-        </div>
-        <div class="ux-answers">
-          <input class="ux-answer" type="radio" name="question2" value="1"> 1
-          <input class="ux-answer" type="radio" name="question2" value="2"> 2
-          <input class="ux-answer" type="radio" name="question2" value="3"> 3
-          <input class="ux-answer" type="radio" name="question2" value="4"> 4
-          <input class="ux-answer" checked="checked" type="radio" name="question2" value="5"> 5
-        </div>
-      </div>
-
-      <div class="form-group experience">
-        <div class="ux-question" >
-          <p id="question3">Tijekom rješavanja ankete putem igre pomislio/la sam o tome da prekinem igru.
-        </div>
-        <div class="ux-answers">
-          <input class="ux-answer" type="radio" name="question3" value="1"> 1
-          <input class="ux-answer" type="radio" name="question3" value="2"> 2
-          <input class="ux-answer" type="radio" name="question3" value="3"> 3
-          <input class="ux-answer" type="radio" name="question3" value="4"> 4
-          <input class="ux-answer" checked="checked" type="radio" name="question3" value="5"> 5
-        </div>
-      </div>
-
-      <div class="form-group experience" >
-        <div class="ux-question">
-          <p id="question4">I prije sam odgovarao/la na anketna pitanja na neki sličan, neklasični, način.
-        </div>
-        <div class="ux-answers">
-          <input class="ux-answer" type="radio" name="question4" value="1"> 1
-          <input class="ux-answer" type="radio" name="question4" value="2"> 2
-          <input class="ux-answer" type="radio" name="question4" value="3"> 3
-          <input class="ux-answer" type="radio" name="question4" value="4"> 4
-          <input class="ux-answer" checked="checked" type="radio" name="question4" value="5"> 5
-        </div>
-      </div>
-
-      <div class="form-group experience" >
-        <div class="ux-question">
-          <p id="question5">Prikupljanje podataka putem igre primjereno je za sve generacije.
-        </div>
-        <div class="ux-answers">
-          <input class="ux-answer" type="radio" name="question5" value="1"> 1
-          <input class="ux-answer" type="radio" name="question5" value="2"> 2
-          <input class="ux-answer" type="radio" name="question5" value="3"> 3
-          <input class="ux-answer" type="radio" name="question5" value="4"> 4
-          <input class="ux-answer" checked="checked" type="radio" name="question5" value="5"> 5
-        </div>
-      </div>
-
-      <div class="form-group experience" >
-        <div class="ux-question">
-          <p id="question6">Igra je dobra ideja, ali ova konkretna igra nije bila po mom ukusu.
-        </div>
-        <div class="ux-answers">
-          <input class="ux-answer" type="radio" name="question6" value="1"> 1
-          <input class="ux-answer" type="radio" name="question6" value="2"> 2
-          <input class="ux-answer" type="radio" name="question6" value="3"> 3
-          <input class="ux-answer" type="radio" name="question6" value="4"> 4
-          <input class="ux-answer" checked="checked" type="radio" name="question6" value="5"> 5
-        </div>
-      </div>
-
-      <div class="form-group experience" >
-        <div class="ux-question">
-          <p id="question7">Kompleksnost i tok igre primjeren je za svrhu prikupljanja podataka.
-        </div>
-        <div class="ux-answers">
-          <input class="ux-answer" type="radio" name="question7" value="1"> 1
-          <input class="ux-answer" type="radio" name="question7" value="2"> 2
-          <input class="ux-answer" type="radio" name="question7" value="3"> 3
-          <input class="ux-answer" type="radio" name="question7" value="4"> 4
-          <input class="ux-answer" checked="checked" type="radio" name="question7" value="5"> 5
-        </div>
-      </div>
-
-      <div class="form-group experience">
-        <div class="ux-question">
-          <p  id="question8">I u buduće bi htio/htjela odgovarati na anketna pitanja na sličan način kroz igru.
-        </div>
-        <div class="ux-answers">
-          <input class="ux-answer" type="radio" name="question8" value="1"> 1
-          <input class="ux-answer" type="radio" name="question8" value="2"> 2
-          <input class="ux-answer" type="radio" name="question8" value="3"> 3
-          <input class="ux-answer" type="radio" name="question8" value="4"> 4
-          <input class="ux-answer" checked="checked" type="radio" name="question8" value="5"> 5
-        </div>
-      </div>
-
-      <div class="form-group experience" >
-        <div class="ux-question">
-          <p id="question9">Vizualni efekti tokom igrice prikupljanje podataka učinili su zanimljivijim te sam više razmišljao/la o odgovoru koji ću dati.
-        </div>
-        <div class="ux-answers">
-          <input class="ux-answer" type="radio" name="question9" value="1"> 1
-          <input class="ux-answer" type="radio" name="question9" value="2"> 2
-          <input class="ux-answer" type="radio" name="question9" value="3"> 3
-          <input class="ux-answer" type="radio" name="question9" value="4"> 4
-          <input class="ux-answer" checked="checked" type="radio" name="question9" value="5"> 5
-        </div>
-      </div>
-
-      <div class="form-group experience">
-        <div class="ux-question">
-          <p  id="question10">Igra je vremenski zahtjevnija.
-        </div>
-        <div class="ux-answers">
-          <input class="ux-answer" type="radio" name="question10" value="1"> 1
-          <input class="ux-answer" type="radio" name="question10" value="2"> 2
-          <input class="ux-answer" type="radio" name="question10" value="3"> 3
-          <input class="ux-answer" type="radio" name="question10" value="4"> 4
-          <input class="ux-answer" checked="checked" type="radio" name="question10" value="5"> 5
-        </div>
-      </div>
-
-      <div class="form-group experience">
-        <div class="ux-question">
-          <p  id="question11">Igra je nepotrebna komplikacija koja ne doprinosi pozitivno mom iskustvu ispunjavanja ankete.
-        </div>
-        <div class="ux-answers">
-          <input class="ux-answer" type="radio" name="question11" value="1"> 1
-          <input class="ux-answer" type="radio" name="question11" value="2"> 2
-          <input class="ux-answer" type="radio" name="question11" value="3"> 3
-          <input class="ux-answer" type="radio" name="question11" value="4"> 4
-          <input class="ux-answer" checked="checked" type="radio" name="question11" value="5"> 5
-        </div>
-      </div>
-
-      <div class="form-group experience">
-        <div class="ux-question">
-          <p  id="question12">Klasično ispunjavanje ankete jednostavnije je i bolje za prikupljanje podataka.
-        </div>
-        <div class="ux-answers">
-          <input class="ux-answer" type="radio" name="question12" value="1"> 1
-          <input class="ux-answer" type="radio" name="question12" value="2"> 2
-          <input class="ux-answer" type="radio" name="question12" value="3"> 3
-          <input class="ux-answer" type="radio" name="question12" value="4"> 4
-          <input class="ux-answer" checked="checked" type="radio" name="question12" value="5"> 5
-        </div>
-      </div>
-
-      <div class="form-group experience" >
-        <div class="ux-question">
-          <p id="question13">Klasična anketa nema nepotrebne vizualne efekte koji samo odvraćaju pažnju sa pitanja.
-        </div>
-        <div class="ux-answers">
-          <input class="ux-answer" type="radio" name="question13" value="1"> 1
-          <input class="ux-answer" type="radio" name="question13" value="2"> 2
-          <input class="ux-answer" type="radio" name="question13" value="3"> 3
-          <input class="ux-answer" type="radio" name="question13" value="4"> 4
-          <input class="ux-answer" type="radio" name="question13" value="5"> 5
-        </div>
-      </div>
-
-      <div class="form-group experience" >
-        <div class="ux-question">
-          <p id="question14">Rješavanje ankete bilo je jednako zanimljivo klasičnim putem kao i putem igrice.
-        </div>
-        <div class="ux-answers">
-          <input class="ux-answer" type="radio" name="question14" value="1"> 1
-          <input class="ux-answer" type="radio" name="question14" value="2"> 2
-          <input class="ux-answer" type="radio" name="question14" value="3"> 3
-          <input class="ux-answer" type="radio" name="question14" value="4"> 4
-          <input class="ux-answer" checked="checked" type="radio" name="question14" value="5"> 5
-        </div>
-      </div>
-
-      <div class="form-group experience"  >
-        <div class="ux-question">
-          <p id="question15">Predanost odgovaranju na anketna pitanja bila je jednaka u oba slučaja.
-        </div>
-        <div class="ux-answers">
-          <input class="ux-answer" type="radio" name="question15" value="1"> 1
-          <input class="ux-answer" type="radio" name="question15" value="2"> 2
-          <input class="ux-answer" type="radio" name="question15" value="3"> 3
-          <input class="ux-answer" type="radio" name="question15" value="4"> 4
-          <input class="ux-answer" checked="checked" type="radio" name="question15" value="5"> 5
-        </div>
-      </div>
-
-
       <button id="experience-submit" class="btn btn-primary">Pohrani</button>
     </div>
   </div>
@@ -355,12 +177,26 @@
     </div>
     <div class="modal-body">
       <p>
-        Auto se može voziti uporabom gumbiju na dnu ekrana. Drugi način je uporaba strelica na tipkovnici.
+        Auto se može voziti uporabom2 gumbiju na dnu ekrana. Drugi način je uporaba strelica na tipkovnici.
       </p>
       <button id="help-submit" class="btn btn-primary" style="float: right">U redu</button>
     </div>
   </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+<script src="../js/game.js"></script>
+<script src="../js/user.js"></script>
+<script src="../js/poll.js"></script>
+<script src="../js/ux.js"></script>
 
 </body>
 </html>

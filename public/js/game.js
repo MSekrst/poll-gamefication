@@ -175,7 +175,7 @@ for (let i = 0; i < 3; i++) {
 var gameArea = new GameArea();
 let car;
 
-const startGame = () => {
+var startGame = () => {
   car = new GameComponent({
     width: sizeFactor * 10,
     height: sizeFactor * 5,
