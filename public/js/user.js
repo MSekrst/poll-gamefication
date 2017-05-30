@@ -32,7 +32,11 @@ const validateUser = () => {
   if (user.sex !== 'M' && user.sex !== 'F') return false;
   if (isNaN(user.income) || user.income < 0) return false;
   if (isNaN(user.age) || user.age < 6 || user.age > 150) return false;
+  if (isNaN(user.carsOwned) || user.carsOwned < 0 || user.carsOwned > 100) return false;
+  if (user.licence === '') return false;
   if (user.status === '') return false;
+  if (user.currentlyHasCar === '') return false;
+
 
   return user.knowledge !== '';
 };
@@ -48,6 +52,9 @@ $('#user-submit').on('click touchstart', e => {
   user.status = $('#status').val();
   user.income = parseInt($('#income').val(), 10);
   user.knowledge = $('#knowledge').val();
+  user.carsOwned = parseInt($('#cars-owned').val(), 10);
+  user.licence = $('#licence').val();
+  user.currentlyHasCar = $('#current').val();
 
   if (validateUser()) {
     $.post('/anketa/user', user, userId => {
