@@ -117,7 +117,7 @@ grass = new GameComponent({
 parkingSpaces.push(grass);
 
 for (let i = 0; i < 3; i++) {
-  let chosenSpace1, chosenSpace2;
+  let chosenSpace1, chosenSpace2, chosenSpace3;
 
   let columnStart = grass.width;
   if (i === 1) {
@@ -138,6 +138,14 @@ for (let i = 0; i < 3; i++) {
     }
   } else {
     chosenSpace1 = Math.floor((Math.random() * (numberOfSpaces - 1)));
+    chosenSpace2 = Math.floor((Math.random() * (numberOfSpaces - 1)));
+    while (chosenSpace2 === chosenSpace1) {
+      chosenSpace2 = Math.floor((Math.random() * (numberOfSpaces - 1)));
+    }
+    chosenSpace3 = Math.floor((Math.random() * (numberOfSpaces - 1)));
+    while (chosenSpace3 === chosenSpace1 || chosenSpace3 === chosenSpace2) {
+      chosenSpace3 = Math.floor((Math.random() * (numberOfSpaces - 1)));
+    }
   }
 
   for (let j = 0; j < numberOfSpaces; j++) {
@@ -150,7 +158,7 @@ for (let i = 0; i < 3; i++) {
     });
     parkingSpaces.push(space);
 
-    if (j === chosenSpace1 || (columnWithTwo === i && j === chosenSpace2)) {
+    if (j === chosenSpace1 ||  j === chosenSpace2 || (columnWithTwo != i && j == chosenSpace3)) {
       const pickupPoint = new GameComponent({
         width: Math.round(sizeFactor * 5),
         height: Math.round(sizeFactor * 5),

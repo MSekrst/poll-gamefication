@@ -37,8 +37,11 @@ const batteryTextElement = $('#battery-text');
 function newPoll() {
   startTime = (new Date()).getTime();
 
-  const n = (4 - start + polls.length) % 4 + 1;
-  daytime = times[polls.length];
+  if(polls.length == 4) {
+    const start = Math.floor((Math.random() * 4) + 1);
+  }
+  const n = (4 - start + polls.length%4) % 4 + 1;
+  daytime = times[polls.length%4];
   soc1 = Math.floor((Math.random() * 25) + 25 * (n - 1));
   soc2 = Math.floor((Math.random() * (100 - soc1 - 1)) + soc1 + 1);
   cost = Math.floor((Math.random() * 100));
@@ -120,7 +123,7 @@ pollSubmnitElement.click(e => {
 
   polls.push(poll);
 
-  if (polls.length === 4) {
+  if (polls.length === 8) {
     timeGame = (new Date()).getTime() - timeGame;
     timeGame = timeGame/1000;
     const url = '/save/polls/' + id;
