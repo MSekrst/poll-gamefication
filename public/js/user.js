@@ -43,6 +43,7 @@ const validateUser = () => {
 
 if (window.location.pathname.includes('/anketa/game/') && window.location.pathname.substr(13).length === 24) {
   id = window.location.pathname.substr(13);
+  console.log(id);
 } else {
   userModal.modal('show');
 }
