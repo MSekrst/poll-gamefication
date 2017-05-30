@@ -54,7 +54,7 @@ $('#user-submit').on('click touchstart', e => {
       id = userId;
 
       if (Math.random() < 0.5) {
-        window.location.href = `http://161.53.19.74/limesurvey/index.php/692151?lang=hr&ID=${id}&BQ=0`;
+        window.location.href = `http://161.53.19.74/limesurvey/index.php/692151?lang=hr&userID=${id}&BQ=0`;
       } else {
         userModal.modal('hide');
 
