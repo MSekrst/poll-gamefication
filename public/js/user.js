@@ -2,6 +2,7 @@
 
 let id;
 let timeGame = 0;
+let gameFirst = true;
 
 const userModal = $('#user-modal');
 const selectElements = $('select.styled-select');
@@ -43,6 +44,8 @@ const validateUser = () => {
 
 if (window.location.pathname.includes('/anketa/game/') && window.location.pathname.substr(13).length === 24) {
   id = window.location.pathname.substr(13);
+
+  gameFirst = false;
 
   startGame();
 } else {

@@ -114,7 +114,11 @@ function newPoll() {
 }
 
 const dataSaved = () => {
-  window.location.href = `https://abozic.limequery.com/636614?userID=${id}`;
+  if (gameFirst) {
+    window.location.href = `http://161.53.19.74/limesurvey/index.php/692151?lang=hr&userID=${id}&BQ=1`;
+  } else {
+    window.location.href = `http://161.53.19.74/limesurvey/index.php/147397?lang=en&userID=${id}&BQ=0`;
+  }
 };
 
 pollSubmnitElement.click(e => {
