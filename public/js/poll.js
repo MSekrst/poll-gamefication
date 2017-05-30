@@ -67,7 +67,7 @@ function newPoll() {
   $('#soc2').html(soc2);
   $('#cost').html(cost);
 
-  coverElement.css({'background-image': 'url(../images/carDefault' + user.sex + '.png)'});
+  coverElement.css({'background-image': 'url(/anketa/images/carDefault' + user.sex + '.png)'});
   pollSubmnitElement.attr('disabled', 'disabled');
   batteryRemaining.css('width', '0');
 
@@ -77,7 +77,7 @@ function newPoll() {
 
   // weird way to make async
   setTimeout(() => {
-    coverElement.css({ 'background-image': 'url(../images/' + image + user.sex + '.png)' }).animate({ opacity: 1 }, 300);
+    coverElement.css({ 'background-image': 'url(/anketa/images/' + image + user.sex + '.png)' }).animate({ opacity: 1 }, 300);
     secondElement.delay(500).fadeIn();
     thirdElement.delay(1100).fadeIn();
 
@@ -129,7 +129,7 @@ pollSubmnitElement.click(e => {
   if (polls.length === 8) {
     timeGame = (new Date()).getTime() - timeGame;
     timeGame = timeGame/1000;
-    const url = 'anketa/save/polls/' + id;
+    const url = '/anketa/save/polls/' + id;
 
     $.ajax({
       method: 'POST',
