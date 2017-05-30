@@ -129,7 +129,7 @@ pollSubmnitElement.click(e => {
   if (polls.length === 8) {
     timeGame = (new Date()).getTime() - timeGame;
     timeGame = timeGame/1000;
-    const url = '/save/polls/' + id;
+    const url = 'anketa/save/polls/' + id;
 
     $.ajax({
       method: 'POST',

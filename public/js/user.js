@@ -53,7 +53,7 @@ $('#user-submit').on('click touchstart', e => {
   user.knowledge = $('#knowledge').val();
 
   if (validateUser()) {
-    $.post('/user', user, userId => {
+    $.post('anketa/user', user, userId => {
       id = userId;
 
       if (Math.random() > 0.5) {

@@ -101,7 +101,7 @@ const numberOfSpaces = Math.round((screenHeight - 50) / (sizeFactor * 5 + 2 * si
 let grass = new GameComponent({
   width: sizeFactor * 3,
   height: screenHeight - sizeFactor * 5 + 10,
-  url: '../images/grass.png',
+  url: '/anketa/images/grass.png',
   x: 0,
   y: sizeFactor * 5 + 10,
 });
@@ -110,7 +110,7 @@ parkingSpaces.push(grass);
 grass = new GameComponent({
   width: sizeFactor * 3,
   height: screenHeight - sizeFactor * 5 + 10,
-  url: '../images/grass.png',
+  url: '/anketa/images/grass.png',
   x: screenWidth - sizeFactor * 3,
   y: sizeFactor * 5 + 10,
 });
@@ -162,7 +162,7 @@ for (let i = 0; i < 3; i++) {
       const pickupPoint = new GameComponent({
         width: Math.round(sizeFactor * 5),
         height: Math.round(sizeFactor * 5),
-        url: '../images/munja.png',
+        url: '/anketa/images/munja.png',
         x: columnStart + screenWidth / 12 - Math.round(sizeFactor * 5) / 2,
         y: space.y + space.height + (screenHeight / numberOfSpaces - space.height) / 2 - Math.round(sizeFactor * 5) / 2,
       });
@@ -179,7 +179,7 @@ var startGame = () => {
   car = new GameComponent({
     width: sizeFactor * 10,
     height: sizeFactor * 5,
-    url: '../images/car' + user.sex + '.png',
+    url: '/anketa/images/car' + user.sex + '.png',
     x: 0,
     y: 0,
   });

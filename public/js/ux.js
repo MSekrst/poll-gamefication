@@ -3,7 +3,7 @@ const collectUx = () => {
 };
 
 const finish = () => {
-  window.location.href = "/finish";
+  window.location.href = "anketa/finish";
 };
 
 $('#experience-submit').on('click touchstart', e => {
@@ -22,7 +22,7 @@ $('#experience-submit').on('click touchstart', e => {
 
   $('#experience-modal').modal('hide');
 
-  const url = '/save/ux/' + id;
+  const url = 'anketa/save/ux/' + id;
   console.log(experience);
 
   $.ajax({
