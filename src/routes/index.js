@@ -11,15 +11,19 @@ router.get('/', (req, res) => {
   res.sendFile(resolve('public/html/home.html'));
 });
 
-router.get('/game', (req, res) => {
+router.get('/anketa', (req, res) => {
+  res.sendFile(resolve('public/html/home.html'));
+});
+
+router.get('/anketa/game', (req, res) => {
   res.sendFile(resolve('public/html/game.html'));
 });
 
-router.get('/finish', (req, res) => {
+router.get('/anketa/finish', (req, res) => {
   res.sendFile(resolve('public/html/finish.html'));
 });
 
-router.get('/game/:id', (req, res) => {
+router.get('/anketa/game/:id', (req, res) => {
   const db = getDb();
 
   let oid;
@@ -27,7 +31,7 @@ router.get('/game/:id', (req, res) => {
   try {
     oid = ObjectID(req.params.id) || null;
   } catch (err) {
-    return res.redirect('/game');
+    return res.redirect('/anketa/game');
   }
 
   db.collection('polls').find({ _id: oid }).toArray((err, data) => {
@@ -38,12 +42,12 @@ router.get('/game/:id', (req, res) => {
     if (data[0]) {
       return res.sendFile(resolve('public/html/game.html'));
     } else {
-      return res.redirect('/');
+      return res.redirect('/anketa');
     }
   });
 });
 
-router.get('/finish/:id', (req, res) => {
+router.get('/anketa/finish/:id', (req, res) => {
   const db = getDb();
 
   let oid;
@@ -62,7 +66,7 @@ router.get('/finish/:id', (req, res) => {
     if (data[0]) {
       return res.sendFile(resolve('public/html/finish.html'));
     } else {
-      return res.redirect('/');
+      return res.redirect('/anketa');
     }
   });
 });

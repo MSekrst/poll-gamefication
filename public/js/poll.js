@@ -114,7 +114,6 @@ function newPoll() {
 }
 
 const dataSaved = () => {
-  console.log(id);
   window.location.href = `https://abozic.limequery.com/636614?userID=${id}`;
 };
 
@@ -131,8 +130,6 @@ pollSubmnitElement.click(e => {
     timeGame = (new Date()).getTime() - timeGame;
     timeGame = timeGame/1000;
     const url = '/save/polls/' + id;
-
-    console.log(timeGame);
 
     $.ajax({
       method: 'POST',

@@ -57,7 +57,7 @@ $('#user-submit').on('click touchstart', e => {
       id = userId;
 
       if (Math.random() > 0.5) {
-        window.location.href = `https://abozic.limequery.com/636614?userID=${id}&BQ=0`;
+        window.location.href = `http://161.53.19.74/limesurvey/index.php/admin/index?userID=${id}&BQ=0`;
       } else {
         userModal.modal('hide');
 
