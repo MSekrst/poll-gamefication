@@ -56,14 +56,14 @@ $('#user-submit').on('click touchstart', e => {
     $.post('/user', user, userId => {
       id = userId;
 
-      //if (Math.random() > 0.5) {
-      //  window.location.href = `https://abozic.limequery.com/636614?userID=${id}&BQ=0`;
-      //} else {
+      if (Math.random() > 0.5) {
+        window.location.href = `https://abozic.limequery.com/636614?userID=${id}&BQ=0`;
+      } else {
         userModal.modal('hide');
 
         startGame();
         timeGame =  (new Date()).getTime();
-      //}
+      }
     });
   } else {
     alert.attr('style', 'display: block');
