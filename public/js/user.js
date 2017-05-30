@@ -53,8 +53,8 @@ $('#user-submit').on('click touchstart', e => {
     $.post('/anketa/user', user, userId => {
       id = userId;
 
-      if (Math.random() > 0.5) {
-        window.location.href = `http://161.53.19.74/limesurvey/index.php/admin/index?userID=${id}&BQ=0`;
+      if (Math.random() < 0.5) {
+        window.location.href = `http://161.53.19.74/limesurvey/index.php/692151?lang=hr&ID=${id}&BQ=0`;
       } else {
         userModal.modal('hide');
 
