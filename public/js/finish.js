@@ -15,6 +15,6 @@ const renderTable = results => {
 };
 
 $.get({
-  url: '/results',
+  url: '/anketa/results',
   success: renderTable,
 });
