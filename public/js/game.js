@@ -83,7 +83,7 @@ class GameArea {
   }
 
   clear() {
-    this.context.clearRect(0, 0, screenWidth, screenHeight);
+    this.context.clearRect(car.x - 100, car.y - 100, car.width + 120, car.height + 120);
   }
 
   stop() {

@@ -40,8 +40,10 @@ const validateUser = () => {
   return user.knowledge !== '';
 };
 
-if (window.location.pathname.includes('/game/')) {
-  id = window.location.pathname.substr(6);
+if (window.location.pathname.includes('/anketa/game/')) {
+  id = window.location.pathname.substr(13);
+
+  console.log('TU');
 
   startGame();
   timeGame =  (new Date()).getTime();
@@ -58,11 +60,11 @@ $('#user-submit').on('click touchstart', e => {
   user.licence = $('#licence').val();
   user.currentlyHasCar = $('#current').val();
 
-  if (validateUser()) {
+  if (!validateUser()) {
     $.post('/user', user, userId => {
       id = userId;
 
-      if (Math.random() > 0.5) {
+      if (Math.random() > 1.5) {
         window.location.href = `http://161.53.19.74/limesurvey/index.php/admin/index?userID=${id}&BQ=0`;
       } else {
         userModal.modal('hide');
