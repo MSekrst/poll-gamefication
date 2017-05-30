@@ -37,11 +37,8 @@ const validateUser = () => {
   return user.knowledge !== '';
 };
 
-if (window.location.pathname.includes('/anketa/game/')) {
+if (window.location.pathname.includes('/anketa/game/') && window.location.pathname.substr(13).length === 24) {
   id = window.location.pathname.substr(13);
-
-  startGame();
-  timeGame =  (new Date()).getTime();
 } else {
   userModal.modal('show');
 }
