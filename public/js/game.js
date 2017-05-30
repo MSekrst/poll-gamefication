@@ -79,7 +79,7 @@ class GameArea {
   }
 
   restart() {
-    this.interval = setInterval(updateGameArea, 8 * pollPickups.length);
+    this.interval = setInterval(updateGameArea, 4 * pollPickups.length);
   }
 
   clear() {
