@@ -37,8 +37,8 @@ const validateUser = () => {
   return user.knowledge !== '';
 };
 
-if (window.location.pathname.includes('/game/')) {
-  id = window.location.pathname.substr(6);
+if (window.location.pathname.includes('/anketa/game/')) {
+  id = window.location.pathname.substr(13);
 
   startGame();
   timeGame =  (new Date()).getTime();
