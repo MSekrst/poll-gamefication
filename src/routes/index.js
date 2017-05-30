@@ -66,7 +66,7 @@ router.get('/finish/:id', (req, res) => {
     if (data[0]) {
       return res.sendFile(resolve('public/html/finish.html'));
     } else {
-      return res.redirect('/anketa');
+      return res.redirect('/finish');
     }
   });
 });
