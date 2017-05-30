@@ -36,7 +36,11 @@ router.get('/game/:id', (req, res) => {
     }
 
     if (data[0]) {
-      return res.sendFile(resolve('public/html/game.html'));
+      if (data[0].polls.length) {
+        return res.redirect(`/anketa/finish/${id}`)
+      } else {
+        return res.sendFile(resolve('public/html/game.html'));
+      }
     } else {
       return res.redirect('/anketa');
     }
