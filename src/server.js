@@ -22,7 +22,13 @@ app.use(express.static('public'));
 // connect router on server
 app.use(router);
 
-app.listen(port, () => {
-  console.log(`Server is running at: ${host}:${port}`);
+let p = port;
+
+if (process.env.NODE_ENV === 'production') {
+  p = 80;
+}
+
+app.listen(p, () => {
+  console.log(`Server is running at: ${host}:${p}`);
 });
 

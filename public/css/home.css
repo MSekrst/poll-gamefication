@@ -22,6 +22,7 @@ body {
 
 .card-text {
   padding: 20px 10px 20px 10px;
+  text-align: left;
 }
 
 .text-colored {
@@ -31,4 +32,21 @@ body {
 .card-title {
   font-weight: 300;
   font-size: 40px;
+}
+
+.big {
+  font-weight: 500;
+}
+
+.small {
+  font-weight: 300;
+}
+
+.important {
+  font-weight: 900;
+}
+
+.left {
+  float: left;
+  margin-left: 10px;
 }
