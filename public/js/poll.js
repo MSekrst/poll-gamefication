@@ -115,7 +115,7 @@ function newPoll() {
 
 const dataSaved = () => {
   if (gameFirst) {
-    window.location.href = `http://161.53.19.74/limesurvey/index.php/692151?lang=hr&userID=${id}&BQ=1`;
+    window.location.href = `http://161.53.19.74/limesurvey/index.php/147397?lang=hr&userID=${id}&BQ=1`;
   } else {
     window.location.href = `http://161.53.19.74/limesurvey/index.php/147397?lang=en&userID=${id}&BQ=0`;
   }
