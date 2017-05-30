@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "babel-watch src/server.js",
     "build": "babel src --out-dir build",
-    "start": "node build/server.js"
+    "start": "node build/server.js",
+    "production": "NODE_ENV=production node build/server.js"
   },
   "keywords": [
     "Node.js",
