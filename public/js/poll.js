@@ -8,7 +8,7 @@ if (screenHeight < 445 || screenWidth < 798) {
 
 const polls = [];
 const times = ['ujutro', 'popodne', 'predvečer', 'po noći'];
-const start = Math.floor((Math.random() * 4) + 1);
+let start = Math.floor((Math.random() * 4) + 1);
 
 let startTime;
 let daytime;
@@ -36,8 +36,13 @@ function newPoll() {
   startTime = (new Date()).getTime();
 
   if(polls.length == 4) {
-    const start = Math.floor((Math.random() * 4) + 1);
+    let start2 = Math.floor((Math.random() * 4) + 1);
+    while (start2 === start) {
+      start2 = Math.floor((Math.random() * 4) + 1);
+    }
+    start = start2;
   }
+
   const n = (4 - start + polls.length%4) % 4 + 1;
   daytime = times[polls.length%4];
   soc1 = Math.floor((Math.random() * 25) + 25 * (n - 1));
