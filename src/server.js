@@ -24,10 +24,6 @@ app.use(router);
 
 let p = port;
 
-if (process.env.NODE_ENV === 'production') {
-  p = 80;
-}
-
 app.listen(p, () => {
   console.log(`Server is running at: ${host}:${p}`);
 });
