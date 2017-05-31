@@ -1,9 +1,5 @@
 'use strict';
 
-if (sessionStorage && sessionStorage.getItem('userID')) {
-  sessionStorage.removeItem('userID');
-}
-
 const renderTable = results => {
   let tableHtml = '';
 
@@ -18,7 +14,20 @@ const renderTable = results => {
   $('#table-body').html(tableHtml);
 };
 
+const showTimeModal = result => {
+  console.log(result);
+};
+
 $.get({
   url: '/anketa/results',
   success: renderTable,
 });
+
+$.get({
+  url: '/anketa/results/:id',
+  success: showTimeModal
+});
+
+if (sessionStorage && sessionStorage.getItem('userID')) {
+  sessionStorage.removeItem('userID');
+}
