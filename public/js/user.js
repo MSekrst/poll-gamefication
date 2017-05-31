@@ -7,7 +7,6 @@ let gameFirst = true;
 const userModal = $('#user-modal');
 const selectElements = $('select.styled-select');
 const alert = $('#validation-alert');
-const helpModal = $('#help-modal');
 
 const user = { sex: 'F' };
 
