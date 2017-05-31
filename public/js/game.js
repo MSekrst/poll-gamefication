@@ -391,6 +391,7 @@ $('#help-submit').on('click touch', () => {
   helpModal.modal('hide');
 
   if (timeGame) {
+    console.log('Time set');
     timeGame =  (new Date()).getTime();
   }
 });
