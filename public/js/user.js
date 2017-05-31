@@ -65,6 +65,14 @@ $('#user-submit').on('click touchstart', e => {
     $.post('/anketa/user', user, userId => {
       id = userId;
 
+      if (sessionStorage) {
+        if (!sessionStorage.getItem('userID')) {
+          sessionStorage.setItem('userID', id);
+        } else {
+          id = sessionStorage.getItem('userID');
+        }
+      }
+
       if (Math.random() < 0.5) {
         window.location.href = `http://161.53.19.74/limesurvey/index.php/692151?lang=hr&userID=${id}&BQ=0`;
       } else {

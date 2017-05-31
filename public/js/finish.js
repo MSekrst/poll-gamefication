@@ -1,5 +1,9 @@
 'use strict';
 
+if (sessionStorage && sessionStorage.getItem('userID')) {
+  sessionStorage.removeItem('userID');
+}
+
 const renderTable = results => {
   let tableHtml = '';
 
