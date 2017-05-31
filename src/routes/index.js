@@ -78,6 +78,7 @@ router.post('/user', (req, res) => {
   const collection = { polls: [], user: req.body, experience: [], timeInGame: -1 };
 
   db.collection('polls').insertOne(collection).then((data) => {
+    console.log(data.insertedId);
     res.status(200).json(data.insertedId);
   }).catch(err => {
     res.status(500).json(err);
