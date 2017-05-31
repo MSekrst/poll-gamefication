@@ -43,10 +43,9 @@ const validateUser = () => {
 if (window.location.pathname.includes('/anketa/game/')) {
   id = window.location.pathname.substr(13);
 
-  console.log('TU');
+  $('#help-modal').modal('show');
 
   startGame();
-  timeGame =  (new Date()).getTime();
 } else {
   userModal.modal('show');
 }
@@ -69,8 +68,9 @@ $('#user-submit').on('click touchstart', e => {
       } else {
         userModal.modal('hide');
 
+        $('#help-modal').modal('show');
+
         startGame();
-        timeGame =  (new Date()).getTime();
       }
     });
   } else {
