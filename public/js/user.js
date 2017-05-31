@@ -7,6 +7,7 @@ let gameFirst = true;
 const userModal = $('#user-modal');
 const selectElements = $('select.styled-select');
 const alert = $('#validation-alert');
+const helpModal = $('#help-modal');
 
 const user = { sex: 'F' };
 
@@ -47,6 +48,8 @@ if (window.location.pathname.includes('/anketa/game/') && window.location.pathna
 
   gameFirst = false;
 
+  helpModal.modal('show');
+
   startGame();
 } else {
   userModal.modal('show');
@@ -78,8 +81,9 @@ $('#user-submit').on('click touchstart', e => {
       } else {
         userModal.modal('hide');
 
+        helpModal.modal('show');
+
         startGame();
-        timeGame =  (new Date()).getTime();
       }
     });
   } else {
