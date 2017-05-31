@@ -15,7 +15,7 @@ const renderTable = results => {
 };
 
 const showTimeModal = result => {
-  console.log(result);
+  $('#my-result').html(`Vaš rezultat: ${result}s`);
 };
 
 $.get({
