@@ -129,8 +129,10 @@ router.get('/results', (req, res) => {
 router.get('/results/:id', (req, res) => {
   const db = getDb();
 
+  let _id;
+
   try {
-    const _id = ObjectID(req.params.id);
+    _id = ObjectID(req.params.id);
   } catch (err) {
     return res.status(400).end();
   }
@@ -139,6 +141,8 @@ router.get('/results/:id', (req, res) => {
     if (err) {
       return res.status(500).end();
     }
+
+    console.log(user[0]);
 
     if (user[0]) {
       return res.status(200).json(user[0].timeInGame);
