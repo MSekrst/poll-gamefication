@@ -138,7 +138,7 @@ pollSubmnitElement.click(e => {
     $.ajax({
       method: 'POST',
       url: url,
-      data: JSON.stringify({ polls: polls, timeInGame: timeGame }),
+      data: JSON.stringify({ polls: polls, timeInGame: timeGame, gameFirst }),
       contentType: 'application/json',
       success: dataSaved
     });

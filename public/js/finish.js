@@ -23,11 +23,11 @@ $.get({
   success: renderTable,
 });
 
-$.get({
-  url: '/anketa/results/:id',
-  success: showTimeModal
-});
-
 if (sessionStorage && sessionStorage.getItem('userID')) {
+  $.get({
+    url: `/anketa/results/${sessionStorage.getItem('userID')}`,
+    success: showTimeModal
+  });
+
   sessionStorage.removeItem('userID');
 }

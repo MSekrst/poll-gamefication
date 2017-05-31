@@ -90,7 +90,7 @@ router.post('/save/polls/:id', (req, res) => {
 
   const _id = ObjectID(req.params.id);
   db.collection('polls').findOneAndUpdate({ _id },
-    { $set: { timeInGame: req.body.timeInGame }, $push: { polls: req.body.polls } }, err => {
+    { $set: { timeInGame: req.body.timeInGame, gameFirst: req.body.gameFirst }, $push: { polls: req.body.polls } }, err => {
       if (err) {
         return res.status(500).json(err);
       }
@@ -124,6 +124,28 @@ router.get('/results', (req, res) => {
 
     return res.status(200).json(data);
   });
+});
+
+router.get('/results/:id', (req, res) => {
+  const db = getDb();
+
+  try {
+    const _id = ObjectID(req.params.id);
+  } catch (err) {
+    return res.status(400).end();
+  }
+
+  db.collection('polls').find({ _id }).toArray((err, user) => {
+    if (err) {
+      return res.status(500).end();
+    }
+
+    if (user[0]) {
+      return res.status(200).json(user[0].timeInGame);
+    } else {
+      return res.status(404).end()
+    }
+  })
 });
 
 export default router;
