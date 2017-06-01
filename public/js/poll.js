@@ -41,7 +41,7 @@ const batteryTextElement = $('#battery-text');
 function newPoll() {
   startTime = (new Date()).getTime();
 
-  if(polls.length == 4) {
+  if(polls.length === 4) {
     let start2 = Math.floor((Math.random() * 4) + 1);
     while (start2 === start) {
       start2 = Math.floor((Math.random() * 4) + 1);

@@ -325,6 +325,7 @@ function clearMove() {
 
 const pollElement = $('#poll');
 const pollSubmitElement = $('#poll-submit');
+const helpModal = $('#help-modal');
 const helpSubmit = $('#help-submit');
 
 doc.keydown(e => {
@@ -345,7 +346,7 @@ doc.keydown(e => {
       }
     }
   } else {
-    if (!pollElement.is(':visible') && !helpModal.is('visible')) {
+    if (!pollElement.is(':visible') || !helpModal.is('visible')) {
       switch (code) {
         case 38 || 87:
           return moveUp();
@@ -379,8 +380,6 @@ rightBtn.on('mousedown touchstart', moveRight);
 rightBtn.mouseup(clearMove);
 downBtn.on('mousedown touchstart', moveDown);
 downBtn.mouseup(clearMove);
-
-const helpModal = $('#help-modal');
 
 const showHelp = e => {
   helpModal.modal('show');
