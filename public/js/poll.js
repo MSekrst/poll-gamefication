@@ -6,6 +6,13 @@ if (screenHeight < 475 || screenWidth < 448) {
   capable = false;
 }
 
+let isMobile = false;
+
+if (screenHeight < 900 && screenWidth < 800) {
+  // TODO add userAgent check
+  isMobile = true;
+}
+
 const polls = [];
 const times = ['ujutro', 'popodne', 'predvečer', 'po noći'];
 let start = Math.floor((Math.random() * 4) + 1);
@@ -138,7 +145,7 @@ pollSubmnitElement.click(e => {
     $.ajax({
       method: 'POST',
       url: url,
-      data: JSON.stringify({ polls: polls, timeInGame: timeGame, gameFirst }),
+      data: JSON.stringify({ polls: polls, timeInGame: timeGame, gameFirst, isMobile }),
       contentType: 'application/json',
       success: dataSaved
     });

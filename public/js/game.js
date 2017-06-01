@@ -325,6 +325,7 @@ function clearMove() {
 
 const pollElement = $('#poll');
 const pollSubmitElement = $('#poll-submit');
+const helpSubmit = $('#help-submit');
 
 doc.keydown(e => {
   const code = e.keyCode ? e.keyCode : e.which;
@@ -337,14 +338,14 @@ doc.keydown(e => {
         pollSubmitElement.click();
         return clearMove();
       } else {
-        if ($('#experience-modal').is(':visible')) {
-          $('#experience-submit').click();
+        if (helpModal.is(':visible')) {
+          helpSubmit.click();
           return clearMove();
         }
       }
     }
   } else {
-    if (!pollElement.is(':visible')) {
+    if (!pollElement.is(':visible') && !helpModal.is('visible')) {
       switch (code) {
         case 38 || 87:
           return moveUp();
@@ -387,7 +388,7 @@ const showHelp = e => {
 
 $('#help-button').on('click touch', showHelp);
 
-$('#help-submit').on('click touch', () => {
+helpSubmit.on('click touch', () => {
   helpModal.modal('hide');
 
   if (!timeGame) {
