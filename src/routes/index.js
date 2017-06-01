@@ -90,7 +90,7 @@ router.post('/save/polls/:id', (req, res) => {
 
   const _id = ObjectID(req.params.id);
   db.collection('polls').findOneAndUpdate({ _id },
-    { $set: { timeInGame: req.body.timeInGame, gameFirst: req.body.gameFirst }, $push: { polls: req.body.polls } }, err => {
+    { $set: { timeInGame: req.body.timeInGame, gameFirst: req.body.gameFirst, isMobile: req.body.isMobile }, $push: { polls: req.body.polls } }, err => {
       if (err) {
         return res.status(500).json(err);
       }
