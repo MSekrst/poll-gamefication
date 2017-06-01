@@ -8,8 +8,7 @@ if (screenHeight < 475 || screenWidth < 448) {
 
 let isMobile = false;
 
-if (screenHeight < 900 && screenWidth < 800) {
-  // TODO add userAgent check
+if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
   isMobile = true;
 }
 
