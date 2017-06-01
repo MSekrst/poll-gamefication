@@ -283,3 +283,17 @@ input[type=range]:focus::-ms-fill-upper {
   background-color: #1f80E0;
   cursor: pointer;
 }
+
+@media (max-height: 630px ) AND (max-width: 450px) {
+  #poll-content {
+    margin: 10px auto 0 auto;
+    min-width: 390px;
+  }
+
+  #battery {
+    height: 100px;
+    width: 375px;
+    bottom: 7px;
+    left: calc((100% - 390px) / 2);
+  }
+}
