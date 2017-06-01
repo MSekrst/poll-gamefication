@@ -346,7 +346,7 @@ doc.keydown(e => {
       }
     }
   } else {
-    if (!pollElement.is(':visible') || !helpModal.is('visible')) {
+    if (!pollElement.is(':visible') || !helpModal.is(':visible')) {
       switch (code) {
         case 38 || 87:
           return moveUp();
