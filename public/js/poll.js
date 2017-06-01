@@ -2,7 +2,7 @@
 
 let capable = true;
 
-if (screenHeight < 445 || screenWidth < 798) {
+if (screenHeight < 475 || screenWidth < 448) {
   capable = false;
 }
 
